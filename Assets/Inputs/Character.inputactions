@@ -18,7 +18,7 @@
                     "name": "LeftClick",
                     "type": "Value",
                     "id": "97393a34-6885-4a6f-93a8-e09f17565817",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
