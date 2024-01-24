@@ -19,7 +19,7 @@ public class LevelText : MonoBehaviour
     private void UpdateLevelVar()
     {
         levelNum = (int)GameManager.I.level;
-        levelName = GameManager.I.level.ToString();
+        levelName = GameManager.I.level.ToString().ToUpper();
     }
 
     private void UpdateLevelText()

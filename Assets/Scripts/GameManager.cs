@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
+
+    public bool isGameOver = false;
+
+    public GameObject InGameUI;
+    public GameObject GameOverUI;
+    public GameObject GameOverButton;
 
     public float lifeTime = 0f;
     public Level level;
@@ -33,8 +40,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        lifeTime += Time.deltaTime;
-        LevelUpdater();
+        if (!isGameOver)
+        {
+            lifeTime += Time.deltaTime;
+            LevelUpdater();
+        }
+        else
+        {
+            GameOverSequence();
+        }
     }
 
     private void LevelUpdater()
@@ -63,5 +77,12 @@ public class GameManager : MonoBehaviour
         {
             level = Level.hexagon;
         }
+    }
+
+    private void GameOverSequence()
+    {
+        InGameUI.SetActive(false);
+        GameOverButton.SetActive(false);
+        GameOverUI.SetActive(true);
     }
 }
