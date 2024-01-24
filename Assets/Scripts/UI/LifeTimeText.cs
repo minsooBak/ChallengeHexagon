@@ -12,7 +12,7 @@ public class LifeTimeText : MonoBehaviour
     private void Update()
     {
         lifeTime = GameManager.I.lifeTime;
-        lifeTimeText.text = "생존시간(초): " + lifeTime.ToString("F2");
+        lifeTimeText.text = lifeTime.ToString("F2");
     }
 
 }
