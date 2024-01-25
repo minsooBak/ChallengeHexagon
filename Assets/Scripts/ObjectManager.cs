@@ -1,40 +1,76 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+
 
 public class ObjectManager : MonoBehaviour
 {
-    //TODO : 오브젝트클래스에 생성과 생성 수 넘겨주기
+    public enum ObjectType
+    {
+        ObjectEven,
+        ObejctOdd,
+        Wall
+    }
+
     public GameObject map;
     public Object[] objects;
 
     private Animator _animator;
-    //private int phaseLevel = 1;
+    private float _time = 0f;
     [SerializeField] private float _dealy = 5f;
+    [SerializeField] private int _speed = 5;
+
     private void Awake()
     {
         Instantiate(map, transform);
         objects = GetComponentsInChildren<Object>();
         _animator = GetComponentInChildren<Animator>();
+        int layer = 1;
+        foreach (Object obj in objects)
+        {
+            obj.CreateWall(5, layer++);
+        }
     }
 
 
     private void Update()
     {
-        int r = 0;
-        int s = Random.Range(5, 20);
-        if (Input.GetKeyDown(KeyCode.Space))
+        TestWall();
+        _time += Time.deltaTime;
+        if(_time > _dealy)
         {
-            foreach(Object obj in objects)
+            foreach (Object obj in objects)
             {
-                obj.CreateWall(s, ++r);
+                obj.TakeOutWall(_speed);
             }
+            _time = 0;
         }
-        else if(Input.GetKeyDown(KeyCode.A))
+    }
+
+    private void TestWall()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
         {
             _animator.SetTrigger("1_Disabled");
-        }else if(Input.GetKeyDown(KeyCode.D))
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             _animator.SetTrigger("1_Active");
         }
+    }
+
+    public void ObjectUpdate(float dealy, int speed)
+    {
+        _dealy = dealy;
+        _speed = speed;
+    }
+
+    public void ChangePentagon()
+    {
+        _animator.SetTrigger("1_Disabled");
+    }
+
+    public void ChangeHexagon()
+    {
+        _animator.SetTrigger("1_Active");
     }
 }
