@@ -9,13 +9,13 @@ public class PlayerInputController : CharacterController
     /// 키보드 입력 A /D 
     /// </summary>
     /// <param name="value">좌우 백터값</param>
-    public void OnMove(InputValue value)
-    {
-        Vector2 dirVec = value.Get<Vector2>().normalized;
-        Debug.Log(dirVec);
-        Debug.Log("Move");
-        CallMoveEvent(dirVec);
-    }
+    //public void OnMove(InputValue value)
+    //{
+    //    Vector2 dirVec = value.Get<Vector2>().normalized;
+    //    Debug.Log(dirVec);
+    //    Debug.Log("Move");
+    //    CallMoveEvent(dirVec);
+    //}
     /// <summary>
     /// 마우스 우클릭
     /// </summary>

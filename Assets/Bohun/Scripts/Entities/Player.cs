@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        HP -= 1; //벽에 따라 변경
+        Debug.Log("TriggerEnter");
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("Exit");
     }
 
     public void GetCharacterStat(Character currentCharacter)
