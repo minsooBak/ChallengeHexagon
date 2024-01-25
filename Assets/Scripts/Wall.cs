@@ -5,17 +5,17 @@ public class Wall : MonoBehaviour
 {
     public float speed = 5f;
     public int Layers = 0;
-    private SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
     private void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         if (Layers != 0)
         {
-            renderer.sortingOrder = Layers;
+            _renderer.sortingOrder = Layers;
             Layers = 0;
         }
         if (transform.localPosition.y >= 0.54f)
@@ -30,7 +30,7 @@ public class Wall : MonoBehaviour
         float r = Random.Range(0f, 1f);
         float g = Random.Range(0f, 1f);
         float b = Random.Range(0f, 1f);
-        renderer.color = new Color(r, g, b);
+        _renderer.color = new Color(r, g, b);
         transform.localPosition = new Vector3(0, -0.4f, 0);
     }
 }
