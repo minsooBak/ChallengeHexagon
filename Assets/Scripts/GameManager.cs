@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverButton;
 
     public float lifeTime = 0f;
+    public float bestScore = 0f;
     public Level level;
 
     public enum Level
@@ -47,7 +48,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            SetBestScore();
             GameOverSequence();
+            CheckAnyButtonInput();
         }
     }
 
@@ -79,10 +82,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SetBestScore()
+    {
+        if (lifeTime > bestScore)
+        {
+            bestScore = lifeTime;
+        }
+    }
+
     private void GameOverSequence()
     {
         InGameUI.SetActive(false);
         GameOverButton.SetActive(false);
         GameOverUI.SetActive(true);
+    }
+
+    private void CheckAnyButtonInput()
+    {
+        if (Input.anyKeyDown)
+        {
+            RestartGame();
+        }
+    }
+
+    private void RestartGame()
+    {
+        lifeTime = 0f;
+        isGameOver = false;
+        InGameUI.SetActive(true);
+        GameOverButton.SetActive(true);
+        GameOverUI.SetActive(false);
     }
 }

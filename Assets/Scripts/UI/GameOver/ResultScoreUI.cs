@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CurrentRecordText : MonoBehaviour
+public class ResultScoreUI : MonoBehaviour
 {
-    public Text text;
+    public Text currentRecordText;
+    public Text bestRecordText;
 
-    private void Start()
+    private void Update()
     {
-        text.text = GameManager.I.lifeTime.ToString("F2") + " s";
+        currentRecordText.text = GameManager.I.lifeTime.ToString("F2") + " s";
+        bestRecordText.text = GameManager.I.bestScore.ToString("F2") + " s";
     }
 }
