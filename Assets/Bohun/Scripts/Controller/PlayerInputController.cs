@@ -22,7 +22,6 @@ public class PlayerInputController : CharacterController
     /// <param name="inputValue"></param>
     public void OnRightClick(InputValue inputValue)
     {
-        Debug.Log(inputValue);
         Vector2 dirVec = Vector2.right;
        
         if (!inputValue.isPressed)
@@ -37,7 +36,6 @@ public class PlayerInputController : CharacterController
     /// <param name="inputValue"></param>
     public void OnLeftClick(InputValue inputValue)
     {
-        Debug.Log(inputValue);
         Vector2 dirVec = Vector2.left;
         
         if (!inputValue.isPressed)

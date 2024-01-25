@@ -11,19 +11,13 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(PlayerManager.instance.CurrentCharacter);
-        GetCharacterStat(PlayerManager.instance.CurrentCharacter);
-        Debug.Log(speed);
+        GetCharacterStat(PlayerManager.instance.CurrentCharacter); 
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("TriggerEnter");
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("Exit");
     }
 
     public void GetCharacterStat(Character currentCharacter)
