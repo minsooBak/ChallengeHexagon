@@ -48,13 +48,19 @@ public class ObjectManager : MonoBehaviour
 
     private void TestWall()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             _animator.SetTrigger("1_Disabled");
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.F2))
         {
             _animator.SetTrigger("1_Active");
+        }else if(Input.GetKeyDown(KeyCode.F3)) 
+        {
+            _animator.SetTrigger("2_Disabled");
+        }else if(Input.GetKeyDown(KeyCode.F4))
+        {
+            _animator.SetTrigger("2_Active");
         }
     }
 
