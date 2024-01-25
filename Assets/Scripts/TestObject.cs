@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 음원을 재생 테스트를 위한 테스트 클래스입니다.
 public class TestObject : MonoBehaviour
 {
     AudioManager audioManager;
