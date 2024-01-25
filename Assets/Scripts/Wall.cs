@@ -1,19 +1,36 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
     public float speed = 5f;
-    // Start is called before the first frame update
-    void Start()
+    public int Layers = 0;
+    private SpriteRenderer renderer;
+    private void Start()
     {
-        
+        renderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.localPosition.y >= 0.5f)
-            transform.localPosition = new Vector3(0, -0.4f, 0);
+        if (Layers != 0)
+        {
+            renderer.sortingOrder = Layers;
+            Layers = 0;
+        }
+        if (transform.localPosition.y >= 0.54f)
+        {
+            Init();
+        }
         transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, speed * Time.deltaTime);
+    }
+
+    public void Init()
+    {
+        float r = Random.Range(0f, 1f);
+        float g = Random.Range(0f, 1f);
+        float b = Random.Range(0f, 1f);
+        renderer.color = new Color(r, g, b);
+        transform.localPosition = new Vector3(0, -0.4f, 0);
     }
 }
