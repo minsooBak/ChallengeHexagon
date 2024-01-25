@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : CharacterController
 {
+    /// <summary>
+    /// 키보드 입력 A /D 
+    /// </summary>
+    /// <param name="value">좌우 백터값</param>
     public void OnMove(InputValue value)
     {
         Vector2 dirVec = value.Get<Vector2>().normalized;
@@ -12,6 +16,10 @@ public class PlayerInputController : CharacterController
         Debug.Log("Move");
         CallMoveEvent(dirVec);
     }
+    /// <summary>
+    /// 마우스 우클릭
+    /// </summary>
+    /// <param name="inputValue"></param>
     public void OnRightClick(InputValue inputValue)
     {
         Debug.Log(inputValue);
@@ -23,6 +31,10 @@ public class PlayerInputController : CharacterController
         }
         CallMoveEvent(dirVec);
     }
+    /// <summary>
+    /// 마우스 좌 클릭
+    /// </summary>
+    /// <param name="inputValue"></param>
     public void OnLeftClick(InputValue inputValue)
     {
         Debug.Log(inputValue);

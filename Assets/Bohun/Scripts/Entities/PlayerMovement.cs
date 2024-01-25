@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 dirVec = Vector2.zero;
     private Vector3 rotateVec = Vector3.zero;
     [SerializeField] private Transform _pivot;
+    private Player _player;
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
         _controller = GetComponent<CharacterController>();
         _rigid = GetComponent<Rigidbody2D>();
     }
@@ -23,12 +25,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyRotation(dirVec);
+        ApplyRotation(rotateVec);
     }
 
-    private void ApplyRotation(Vector2 dir)
+    private void ApplyRotation(Vector3 dir)
     {
-        transform.RotateAround(_pivot.position, -rotateVec, 90f * Time.deltaTime);
+        transform.RotateAround(_pivot.position, -dir, _player.Speed * Time.deltaTime);
     }
 
     private void Move(Vector2 dir)
