@@ -74,6 +74,10 @@ public class EventMain : MonoBehaviour
         else
         {
             _player.HP += number;
+            if(_player.HP == 0)
+            {
+                GameManager.I.isGameOver = true;
+            }
         }
     }
 
