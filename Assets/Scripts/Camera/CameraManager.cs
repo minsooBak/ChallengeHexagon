@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] [Range(1, 90)] float tiltAngle = 30f;
     [SerializeField] [Range(0f, 10f)] float rotationSpeed = 1.0f;
+    [SerializeField] [Range(1f, 30f)] float zoomAmount = 10f;
     [SerializeField] bool isClockwise = true; // true = 시계방향, false = 반시계방향
 
     float rotationAngle = 0f;
@@ -54,9 +55,9 @@ public class CameraManager : MonoBehaviour
 
     private void UpdatePositions()
     {
-        cameraX = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Cos(rotationAngle * Mathf.Deg2Rad) * 10f;
-        cameraY = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Sin(rotationAngle * Mathf.Deg2Rad) * 10f;
-        cameraZ = Mathf.Cos(tiltAngle * Mathf.Deg2Rad) * 10f * (-1);
+        cameraX = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Cos(rotationAngle * Mathf.Deg2Rad) * zoomAmount;
+        cameraY = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Sin(rotationAngle * Mathf.Deg2Rad) * zoomAmount;
+        cameraZ = Mathf.Cos(tiltAngle * Mathf.Deg2Rad) * zoomAmount * (-1);
         headDirecton = new Vector3(0f, 0f, cameraZ);
     }
 
