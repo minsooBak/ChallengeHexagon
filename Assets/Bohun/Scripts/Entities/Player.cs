@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed;
-    public float Speed { get { return speed; } private set { speed = value; } }
-    private int hP;
-    public int HP { get { return hP; } private set { hP = value; } }
+    [SerializeField] private float _speed;
+    [SerializeField] private int _hp;
+    [SerializeField] private int _maxHP;
+
+    public float Speed { get { return _speed; } set { _speed = value; } }
+    public int HP { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, _maxHP); } }
+    public int MaxHP { get { return _maxHP; } set { _maxHP = value; } }
 
     private void OnEnable()
     {
@@ -17,7 +18,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TriggerEnter");
         AudioManager.instance.SFXPlay(SFX.DAMAGED);
     }
 
@@ -26,16 +26,16 @@ public class Player : MonoBehaviour
         switch (currentCharacter)
         {
             case Character.normal:
-                speed = 120f;
-                hP = 100;
+                _speed = 120f;
+                _hp = 100;
                 break;
             case Character.speed:
-                speed = 200f;
-                hP = 50;
+                _speed = 200f;
+                _hp = 50;
                 break;
             case Character.health:
-                speed = 90f;
-                hP = 200;
+                _speed = 90f;
+                _hp = 200;
                 break;
         }
     }
