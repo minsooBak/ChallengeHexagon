@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
@@ -7,11 +6,10 @@ public class ObjectManager : MonoBehaviour
     public Object[] objects;
 
     private Animator _animator;
-    private float _time = 0f;
+    private float _time = 5f;
     [SerializeField] private float _dealy = 5f;
     [SerializeField] private int _speed = 5;
     [SerializeField] private int _defaultDamage = 5;
-    private List<WallEventData> _datas = new ();
 
     private void Awake()
     {
@@ -43,35 +41,11 @@ public class ObjectManager : MonoBehaviour
         _defaultDamage = defaultDamage;
     }
 
-    public void SettingEvent(WallEventData.WallEvent wallEvent, int number, int count = -1)
+    public void SettingEvent(int index)
     {
-        WallEventData data = ScriptableObject.CreateInstance<WallEventData>();
-        switch(wallEvent)
-        {
-            case WallEventData.WallEvent.HP:
-                data.hp = number;
-                break;
-            case WallEventData.WallEvent.SCALE_P:
-                data.scale = number; 
-                break;
-            case WallEventData.WallEvent.SPEED_P:
-                data.speedP = number;
-                break;
-            case WallEventData.WallEvent.SPEED_O:
-                data.speedO = number;
-                break;
-            case WallEventData.WallEvent.HP_MAX:
-                data.maxHP = number; 
-                break;
-            case WallEventData.WallEvent.Damage:
-                data.damage = number;
-                break;
-            case WallEventData.WallEvent.MIRROR:
-                data.isMirror = true;
-                break;
-        }
-        data.number = count == -1 ? Random.Range(0, objects.Length) : count;
-        _datas.Add(data);
+        
+        int number =  Random.Range(0, objects.Length);
+        objects[number].SettingData(index);
     }
 
     public void ChangeObject(int count, bool isAcitve)
@@ -92,15 +66,6 @@ public class ObjectManager : MonoBehaviour
 
     private void TakeOut()
     {
-        if (_datas.Count > 0)
-        {
-            foreach (WallEventData data in _datas)
-            {
-                objects[data.number].SettingData(data);
-            }
-            _datas.Clear();
-        }
-
         foreach (Object obj in objects)
         {
             obj.TakeOutWall(_speed, _defaultDamage);

@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Object : MonoBehaviour
 {
     public GameObject wall;
-    [SerializeField]private GameObject[] objWalls;
+    [SerializeField]private GameObject[] _objWalls;
 
     public int Layer { get; set; }
 
@@ -14,9 +13,6 @@ public class Object : MonoBehaviour
         if (transform.localScale.x < 1)
             gameObject.SetActive(false);
     }
-
-    //TODO
-    //오브젝트 풀링에서 가져오면 종속 시키고 위치 초기화 무조건
 
     public void TakeOutWall(int speed, int damage)
     {
@@ -28,22 +24,22 @@ public class Object : MonoBehaviour
 
         for (int i = 0; i < objWalls.Length; i++)
         {
-            if (objWalls[i].activeSelf == false)
+            if (_objWalls[i].activeSelf == false)
             {
-                objWalls[i].GetComponent<Wall>().Init(speed, damage);
-                objWalls[i].SetActive(true);
+                _objWalls[i].GetComponent<Wall>().Init(speed, damage);
+                _objWalls[i].SetActive(true);
                 break;
             }
         }
     }
 
-    public void SettingData(WallEventData data)
+    public void SettingData(int index)
     {
-        for (int i = 0; i < objWalls.Length; i++)
+        for (int i = 0; i < _objWalls.Length; i++)
         {
-            if (objWalls[i].activeSelf == false)
+            if (_objWalls[i].activeSelf == false)
             {
-                objWalls[i].GetComponent<Wall>().SettingData(data);
+                _objWalls[i].GetComponent<Wall>().SettingData(index);
                 break;
             }
         }
@@ -51,13 +47,13 @@ public class Object : MonoBehaviour
 
     /*public void CreateWall(int count, int layer)
     {
-        objWalls = new GameObject[count];
+        _objWalls = new GameObject[count];
         for (int i = 0; i < count; i++) 
         {
-            objWalls[i] = Instantiate(wall, transform);
-            var w = objWalls[i].GetComponent<Wall>();
+            _objWalls[i] = Instantiate(wall, transform);
+            var w = _objWalls[i].GetComponent<Wall>();
             w.Setting(layer);
-            objWalls[i].SetActive(false);
+            _objWalls[i].SetActive(false);
         }
     }*/
 }
