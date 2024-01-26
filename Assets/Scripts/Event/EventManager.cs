@@ -1,35 +1,35 @@
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private List<WallEventData<float>> _wallDatas;
+    [SerializeField]private List<WallEventData<float>> _wallDatas;
     private const int MaxSize = 5;
     
 
-    private void Awake()
+    private void Start()
     {
         _wallDatas = new List<WallEventData<float>>(MaxSize);
+        for(int i = 0; i < MaxSize; i++)
+        {
+            _wallDatas[i] = ScriptableObject.CreateInstance<WallEventData<float>>();
+        }
     }
 
     public int AddData(WallEvent type, float data)
     {
-        int count = 0;
-        foreach(var wall in _wallDatas)
+        for(int i = 0; i < MaxSize; i++)
         {
-            if(wall.data == 0)
+            if (_wallDatas[i].data == 0)
             {
-                wall.type = type;
-                wall.data = data;
-                break;
+                _wallDatas[i].type = type;
+                _wallDatas[i].data = data;
+                return i;
             }
-            count++;
         }
-        if(count == 5)
-        {
-            Debug.Log("DataCount Range : 5");
-        }
-        return count;
+        Debug.Log("Wall Data Size out");
+        return -1;
     }
 
     public WallEventData<float> GetData(int index)
