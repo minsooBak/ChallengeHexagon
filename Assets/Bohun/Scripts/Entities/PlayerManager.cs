@@ -12,28 +12,56 @@ public enum Character
 
 public class PlayerManager : MonoBehaviour
 {
-   public static PlayerManager instance;
-    private void Awake()
+    private static PlayerManager _instance = null;
+   public static PlayerManager Instance
     {
-        instance = this;
+        get
+        {
+            if(null == _instance)
+            {
+                return null;
+            }
+            else
+            {
+                return _instance;
+            }
+        }
     }
 
-    private Character currentCharacter;
-    public Character CurrentCharacter {  get { return currentCharacter; } }
+    private void Awake()
+    {
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
+    [SerializeField]private Character _currentChracter = Character.health;
+    public Character CurrentCharacter {  get { return _currentChracter; } }
+
 
     public void ChangeCharacterRightButtonClick()
     {
         Character[] characterValues = (Character[])Enum.GetValues(typeof(Character));
-        int currentIndex = Array.IndexOf(characterValues, currentCharacter);
+        int currentIndex = Array.IndexOf(characterValues, _currentChracter);
         int nextIndex = (currentIndex + 1) % characterValues.Length;
-        currentCharacter = characterValues[nextIndex];
+        _currentChracter = characterValues[nextIndex];
     }
     public void ChangeCharacterLeftButtonClick()
     {
         Character[] characterValues = (Character[])Enum.GetValues(typeof(Character));
-        int currentIndex = Array.IndexOf(characterValues, currentCharacter);
+        int currentIndex = Array.IndexOf(characterValues, _currentChracter);
         int nextIndex = (currentIndex - 1) % characterValues.Length;
-        currentCharacter = characterValues[nextIndex];
+        if(nextIndex < 0)
+        {
+            nextIndex = characterValues.Length - 1;
+        }
+        _currentChracter = characterValues[nextIndex];
     }
 
 }

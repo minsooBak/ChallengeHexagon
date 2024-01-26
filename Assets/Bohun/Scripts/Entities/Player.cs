@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed;
-    public float Speed { get { return speed; } private set { speed = value; } }
-    private int hP;
-    public int HP { get { return hP; } private set { hP = value; } }
+    private float _speed;
+    public float Speed { get { return _speed; } private set { _speed = value; } }
+    private int _hp;
+    public int HP { get { return _hp; } private set { _hp = value; } }
 
     private void OnEnable()
     {
-        GetCharacterStat(PlayerManager.instance.CurrentCharacter); 
+        GetCharacterStat(PlayerManager.Instance.CurrentCharacter); 
     }
 
 
@@ -25,16 +25,16 @@ public class Player : MonoBehaviour
         switch (currentCharacter)
         {
             case Character.normal:
-                speed = 120f;
-                hP = 100;
+                _speed = 120f;
+                _hp = 100;
                 break;
             case Character.speed:
-                speed = 200f;
-                hP = 50;
+                _speed = 200f;
+                _hp = 50;
                 break;
             case Character.health:
-                speed = 90f;
-                hP = 200;
+                _speed = 90f;
+                _hp = 200;
                 break;
         }
     }
