@@ -21,21 +21,21 @@ public class EventMain : MonoBehaviour
             return;
         }
         var data = GameManager.I.EventManager.GetData(index);
-        switch(data.type)
+        switch(data.Type)
         {
             case WallEvent.HP:
                 {
-                    ChangeHP((int)data.data);
+                    ChangeHP((int)data.Data);
                     break;
                 }
             case WallEvent.HP_MAX:
                 {
-                    ChangeHP((int)data.data, true);
+                    ChangeHP((int)data.Data, true);
                     break;
                 }
             case WallEvent.SPEED_P:
                 {
-                    ChangSpeed(data.data);
+                    ChangSpeed(data.Data);
                     break;
                 }
             case WallEvent.MIRROR:
@@ -45,21 +45,21 @@ public class EventMain : MonoBehaviour
                 }
             case WallEvent.SCALE_P:
                 {
-                    ChangeScale((int)data.data);
+                    ChangeScale((int)data.Data);
                     break;
                 }
             case WallEvent.SPEED_O:
                 {
-                    ChangeObjectSpeed((int)data.data);
+                    ChangeObjectSpeed((int)data.Data);
                     break;
                 }
             case WallEvent.Damage:
                 {
-                    ChangeHP((int)data.data + damage);
+                    ChangeHP((int)data.Data + damage);
                     break;
                 }
         }
-        data.data = 0;
+        data.Data = 0;
     }
 
     private void ChangeHP(int number, bool isMax = false)

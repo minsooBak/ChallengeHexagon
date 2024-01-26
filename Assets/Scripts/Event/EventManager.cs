@@ -1,30 +1,37 @@
 using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
+using static EventManager;
+
+public enum WallEvent
+{
+    Damage,
+    HP,
+    HP_MAX,
+    SPEED_P,
+    SPEED_O,
+    SCALE_P,
+    MIRROR,
+}
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField]private List<WallEventData<float>> _wallDatas;
-    private const int MaxSize = 5;
-    
 
-    private void Start()
+    public struct WallData
     {
-        _wallDatas = new List<WallEventData<float>>(MaxSize);
-        for(int i = 0; i < MaxSize; i++)
-        {
-            _wallDatas[i] = ScriptableObject.CreateInstance<WallEventData<float>>();
-        }
+        public WallEvent Type { get; set; }
+        public float Data { get; set; }
     }
+    private const int MAX_SIZE = 5;
+    [SerializeField]private WallData[] _wallDatas = new WallData[MAX_SIZE];
 
     public int AddData(WallEvent type, float data)
     {
-        for(int i = 0; i < MaxSize; i++)
+        for(int i = 0; i < MAX_SIZE; i++)
         {
-            if (_wallDatas[i].data == 0)
+            if (_wallDatas[i].Data == 0)
             {
-                _wallDatas[i].type = type;
-                _wallDatas[i].data = data;
+                _wallDatas[i].Type = type;
+                _wallDatas[i].Data = data;
                 return i;
             }
         }
@@ -32,7 +39,7 @@ public class EventManager : MonoBehaviour
         return -1;
     }
 
-    public WallEventData<float> GetData(int index)
+    public WallData GetData(int index)
     {
         return _wallDatas[index];
     }
