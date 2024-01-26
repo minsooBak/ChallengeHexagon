@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 
     public EventManager EventManager { get; private set; }
 
-    public GameObject InGameUI;
-    public GameObject GameOverUI;
-    public GameObject GameOverButton;
+    [SerializeField] private GameObject InGameUI;
+    [SerializeField] private GameObject GameOverUI;
+    [SerializeField] private GameObject GameOverButton;
 
     private ObjectManager _objectManager;
 

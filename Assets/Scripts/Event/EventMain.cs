@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EventMain : MonoBehaviour
@@ -5,12 +6,14 @@ public class EventMain : MonoBehaviour
     private Player _player;//체력, 속도, 좌우반전[속도 * -1]
     private Transform _playerTransform;//크기
     private ObjectManager _objectManager;//딜레이, 속도
+    private EventManager _eventManager;
 
     private void Start()
     {
         _player = GetComponent<Player>();
         _playerTransform = GetComponent<Transform>();
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+        _eventManager = GameManager.I.EventManager;
     }
 
     public void OnWallEvent(int index, int damage = 0)
@@ -20,7 +23,7 @@ public class EventMain : MonoBehaviour
             ChangeHP(damage);
             return;
         }
-        var data = GameManager.I.EventManager.GetData(index);
+        var data = _eventManager.GetData(index);
         switch(data.Type)
         {
             case WallEvent.HP:
