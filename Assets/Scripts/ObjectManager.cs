@@ -1,23 +1,15 @@
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class ObjectManager : MonoBehaviour
 {
-    public enum ObjectType
-    {
-        ObjectEven,
-        ObejctOdd,
-        Wall
-    }
-
     public GameObject map;
     public Object[] objects;
 
     private Animator _animator;
-    private float _time = 0f;
+    private float _time = 5f;
     [SerializeField] private float _dealy = 5f;
     [SerializeField] private int _speed = 5;
+    [SerializeField] private int _defaultDamage = 5;
 
     private void Awake()
     {
@@ -34,49 +26,49 @@ public class ObjectManager : MonoBehaviour
 
     private void Update()
     {
-        TestWall();
         _time += Time.deltaTime;
         if(_time > _dealy)
         {
-            foreach (Object obj in objects)
-            {
-                obj.TakeOutWall(_speed);
-            }
+            TakeOut();
             _time = 0;
         }
     }
 
-    private void TestWall()
-    {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            _animator.SetTrigger("1_Disabled");
-        }
-        else if (Input.GetKeyDown(KeyCode.F2))
-        {
-            _animator.SetTrigger("1_Active");
-        }else if(Input.GetKeyDown(KeyCode.F3)) 
-        {
-            _animator.SetTrigger("2_Disabled");
-        }else if(Input.GetKeyDown(KeyCode.F4))
-        {
-            _animator.SetTrigger("2_Active");
-        }
-    }
-
-    public void ObjectUpdate(float dealy, int speed)
+    public void ObjectUpdate(float dealy, int speed, int defaultDamage)
     {
         _dealy = dealy;
         _speed = speed;
+        _defaultDamage = defaultDamage;
     }
 
-    public void ChangePentagon()
+    public void SettingEvent(int index)
     {
-        _animator.SetTrigger("1_Disabled");
+        
+        int number =  Random.Range(0, objects.Length);
+        objects[number].SettingData(index);
     }
 
-    public void ChangeHexagon()
+    public void ChangeObject(int count, bool isAcitve)
     {
-        _animator.SetTrigger("1_Active");
+        if(isAcitve)
+        {
+            _animator.SetTrigger($"{count}_Active");
+        }else
+        {
+            _animator.SetTrigger($"{count}_Disabled");
+        }
+    }
+
+    public void AddSpeed(int speed)
+    {
+        _speed += speed;
+    }
+
+    private void TakeOut()
+    {
+        foreach (Object obj in objects)
+        {
+            obj.TakeOutWall(_speed, _defaultDamage);
+        }
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,13 +6,19 @@ public class GameManager : MonoBehaviour
 
     public bool isGameOver = false;
 
-    public GameObject InGameUI;
-    public GameObject GameOverUI;
-    public GameObject GameOverButton;
+    public EventManager EventManager { get; private set; }
+
+    [SerializeField] private GameObject InGameUI;
+    [SerializeField] private GameObject GameOverUI;
+    [SerializeField] private GameObject GameOverButton;
+
+    private ObjectManager _objectManager;
 
     public float lifeTime = 0f;
     public float bestScore = 0f;
     public Level level;
+
+    public bool isEvent = false;
 
     public enum Level
     {
@@ -37,10 +40,17 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+        EventManager = gameObject.AddComponent<EventManager>();
     }
 
     private void Update()
     {
+        if (isEvent)
+        {
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP, 10));
+        }
+
         if (!isGameOver)
         {
             lifeTime += Time.deltaTime;
