@@ -5,7 +5,6 @@ public class Object : MonoBehaviour
 {
     public GameObject wall;
     [SerializeField]private GameObject[] objWalls;
-    private List<Wall> walls;
 
     private void Update()
     {
@@ -13,14 +12,26 @@ public class Object : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    public void TakeOutWall(int speed)
+    public void TakeOutWall(int speed, int damage)
     {
-        for(int i = 0; i < walls.Count; i++)
+        for(int i = 0; i < objWalls.Length; i++)
         {
             if (objWalls[i].activeSelf == false)
             {
-                walls[i].Init(speed);
+                objWalls[i].GetComponent<Wall>().Init(speed, damage);
                 objWalls[i].SetActive(true);
+                break;
+            }
+        }
+    }
+
+    public void SettingData(WallEventData data)
+    {
+        for (int i = 0; i < objWalls.Length; i++)
+        {
+            if (objWalls[i].activeSelf == false)
+            {
+                objWalls[i].GetComponent<Wall>().SettingData(data);
                 break;
             }
         }
@@ -28,15 +39,13 @@ public class Object : MonoBehaviour
 
     public void CreateWall(int count, int layer)
     {
-        walls = new List<Wall>(count);
         objWalls = new GameObject[count];
         for (int i = 0; i < count; i++) 
         {
-            var w = Instantiate(wall, transform);
-            objWalls[i] = w;
-            walls.Add(w.GetComponent<Wall>());
-            walls[i].Setting(layer);
-            w.SetActive(false);
+            objWalls[i] = Instantiate(wall, transform);
+            var w = objWalls[i].GetComponent<Wall>();
+            w.Setting(layer);
+            objWalls[i].SetActive(false);
         }
     }
 }

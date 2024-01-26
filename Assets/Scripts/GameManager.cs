@@ -13,9 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverUI;
     public GameObject GameOverButton;
 
+    private ObjectManager _objectManager;
+
     public float lifeTime = 0f;
     public float bestScore = 0f;
     public Level level;
+
+    public bool isEvent = false;
 
     public enum Level
     {
@@ -37,10 +41,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
     }
 
     private void Update()
     {
+        if (isEvent)
+        {
+            _objectManager.SettingEvent(WallEventData.WallEvent.HP, 10);
+        }
+
         if (!isGameOver)
         {
             lifeTime += Time.deltaTime;
