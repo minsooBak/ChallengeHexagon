@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
 
     public bool isGameOver = false;
+
+    public EventManager EventManager { get; private set; }
 
     public GameObject InGameUI;
     public GameObject GameOverUI;
@@ -42,13 +41,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+        EventManager = gameObject.AddComponent<EventManager>();
     }
 
     private void Update()
     {
         if (isEvent)
         {
-            _objectManager.SettingEvent(WallEventData.WallEvent.HP, 10);
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP, 10));
         }
 
         if (!isGameOver)

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Object : MonoBehaviour
@@ -6,11 +5,6 @@ public class Object : MonoBehaviour
     public GameObject wall;
     [SerializeField]private GameObject[] objWalls;
 
-    private void Update()
-    {
-        if (transform.localScale.x < 1)
-            gameObject.SetActive(false);
-    }
 
     public void TakeOutWall(int speed, int damage)
     {
@@ -25,13 +19,13 @@ public class Object : MonoBehaviour
         }
     }
 
-    public void SettingData(WallEventData data)
+    public void SettingData(int index)
     {
         for (int i = 0; i < objWalls.Length; i++)
         {
             if (objWalls[i].activeSelf == false)
             {
-                objWalls[i].GetComponent<Wall>().SettingData(data);
+                objWalls[i].GetComponent<Wall>().SettingData(index);
                 break;
             }
         }

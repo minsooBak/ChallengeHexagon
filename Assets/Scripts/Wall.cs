@@ -1,13 +1,14 @@
-using System;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
     [SerializeField]private float _speed = 5f;
     private int _damage = 0;
-    WallEventData _data;
+    int _dataIndex = -1;
+
     void Update()
     {
+        CheckUpdate();
         if (transform.localPosition.y >= 0.56f)
         {
             gameObject.SetActive(false);
@@ -19,21 +20,8 @@ public class Wall : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EventMain _event = collision.GetComponent<EventMain>();
-        if (_data != null)
-        {
-            _event.ChangeScale(_data.scale);
-            _event.ChangSpeed(_data.speedP);
-            _event.ChangeObjectSpeed(_data.speedO);
-            _event.ChangeHP(_data.maxHP, true);
-            _event.ChangeHP(_data.hp);
-            if (_data.isMirror)
-                _event.ChangeMirror();
-            _event.ChangeHP((_damage + _data.damage) * -1);
-        }
-        else
-        {
-            _event.ChangeHP(-_damage);
-        }
+        _event.OnWallEvent(_dataIndex, -_damage);
+        _dataIndex = -1;
         gameObject.SetActive(false);
     }
 
@@ -42,9 +30,9 @@ public class Wall : MonoBehaviour
         GetComponent<SpriteRenderer>().sortingOrder = layer;
     }
 
-    public void SettingData(WallEventData data)
+    public void SettingData(int index)
     {
-        _data = data;
+        _dataIndex = index;
     }
 
     public void Init(int speed, int damage)
@@ -52,5 +40,20 @@ public class Wall : MonoBehaviour
         _speed = speed;
         _damage = damage;
         transform.localPosition = new Vector3(0, -0.4f, 0);
+    }
+
+    public void CheckUpdate()
+    {
+        var render = GetComponent<SpriteRenderer>();
+        if (transform.parent.localScale.x <= 0.1f)
+            render.enabled = false;
+        else
+        {
+            render.enabled = true;
+            if(transform.localPosition.x != 0)
+            {
+                transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
+            }
+        }
     }
 }

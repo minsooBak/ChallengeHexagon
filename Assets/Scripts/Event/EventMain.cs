@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EventMain : MonoBehaviour
@@ -14,7 +13,56 @@ public class EventMain : MonoBehaviour
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
     }
 
-    public void ChangeHP(int number, bool isMax = false)
+    public void OnWallEvent(int index, int damage = 0)
+    {
+        if(index == -1)
+        {
+            ChangeHP(damage);
+            return;
+        }
+        var data = GameManager.I.EventManager.GetData(index);
+        switch(data.type)
+        {
+            case WallEvent.HP:
+                {
+                    ChangeHP((int)data.data);
+                    break;
+                }
+            case WallEvent.HP_MAX:
+                {
+                    ChangeHP((int)data.data, true);
+                    break;
+                }
+            case WallEvent.SPEED_P:
+                {
+                    ChangSpeed(data.data);
+                    break;
+                }
+            case WallEvent.MIRROR:
+                {
+                    ChangeMirror();
+                    break;
+                }
+            case WallEvent.SCALE_P:
+                {
+                    ChangeScale((int)data.data);
+                    break;
+                }
+            case WallEvent.SPEED_O:
+                {
+                    ChangeObjectSpeed((int)data.data);
+                    break;
+                }
+            case WallEvent.Damage:
+                {
+                    ChangeHP((int)data.data + damage);
+                    break;
+                }
+        }
+        data.data = 0;
+    }
+
+    private void ChangeHP(int number, bool isMax = false)
     {
         if(isMax)
         {
@@ -26,22 +74,22 @@ public class EventMain : MonoBehaviour
         }
     }
 
-    public void ChangSpeed(float speed)
+    private void ChangSpeed(float speed)
     {
-        _player.Speed += speed; ;
+        _player.Speed += speed;
     }
-    
-    public void ChangeMirror()
+
+    private void ChangeMirror()
     {
         _player.Speed *= -1;
     }
 
-    public void ChangeScale(float addScale)
+    private void ChangeScale(float addScale)
     {
         _playerTransform.localScale += new Vector3(addScale, addScale, 0);
     }
 
-    public void ChangeObjectSpeed(int speed)
+    private void ChangeObjectSpeed(int speed)
     {
         _objectManager.AddSpeed(speed);
     }
