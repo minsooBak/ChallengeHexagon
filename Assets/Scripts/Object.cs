@@ -3,17 +3,17 @@ using UnityEngine;
 public class Object : MonoBehaviour
 {
     public GameObject wall;
-    [SerializeField]private GameObject[] objWalls;
+    [SerializeField]private GameObject[] _objWalls;
 
 
     public void TakeOutWall(int speed, int damage)
     {
-        for(int i = 0; i < objWalls.Length; i++)
+        for(int i = 0; i < _objWalls.Length; i++)
         {
-            if (objWalls[i].activeSelf == false)
+            if (_objWalls[i].activeSelf == false)
             {
-                objWalls[i].GetComponent<Wall>().Init(speed, damage);
-                objWalls[i].SetActive(true);
+                _objWalls[i].GetComponent<Wall>().Init(speed, damage);
+                _objWalls[i].SetActive(true);
                 break;
             }
         }
@@ -21,11 +21,11 @@ public class Object : MonoBehaviour
 
     public void SettingData(int index)
     {
-        for (int i = 0; i < objWalls.Length; i++)
+        for (int i = 0; i < _objWalls.Length; i++)
         {
-            if (objWalls[i].activeSelf == false)
+            if (_objWalls[i].activeSelf == false)
             {
-                objWalls[i].GetComponent<Wall>().SettingData(index);
+                _objWalls[i].GetComponent<Wall>().SettingData(index);
                 break;
             }
         }
@@ -33,13 +33,13 @@ public class Object : MonoBehaviour
 
     public void CreateWall(int count, int layer)
     {
-        objWalls = new GameObject[count];
+        _objWalls = new GameObject[count];
         for (int i = 0; i < count; i++) 
         {
-            objWalls[i] = Instantiate(wall, transform);
-            var w = objWalls[i].GetComponent<Wall>();
+            _objWalls[i] = Instantiate(wall, transform);
+            var w = _objWalls[i].GetComponent<Wall>();
             w.Setting(layer);
-            objWalls[i].SetActive(false);
+            _objWalls[i].SetActive(false);
         }
     }
 }
