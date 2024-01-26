@@ -22,7 +22,7 @@ public class Object : MonoBehaviour
         obj.SetActive(true);
         obj.GetComponent<Wall>().Setting(Layer);
 
-        for (int i = 0; i < objWalls.Length; i++)
+        for (int i = 0; i < _objWalls.Length; i++)
         {
             if (_objWalls[i].activeSelf == false)
             {
