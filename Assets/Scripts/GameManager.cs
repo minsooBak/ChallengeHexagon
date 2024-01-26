@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
 
     public EventManager EventManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
+    public ObjectPool ObjectPool { get; private set; }
+
 
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject GameOverUI;

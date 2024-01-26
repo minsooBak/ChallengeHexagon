@@ -19,8 +19,6 @@ public enum SFX
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-
     [Header("#BGM")]
     [SerializeField] private AudioClip[] bgmClip;
     [SerializeField] private float bgmVolume;
@@ -37,7 +35,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         Init();
     }
 
