@@ -156,8 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &215660341745987225
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,8 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &2484019478575432537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &5386050231198811347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,8 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &5903915339286646052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,8 +1799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &8165034248721398809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,8 +1956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
-  objWalls: []
+  _objWalls: []
 --- !u!1 &8673519508735278543
 GameObject:
   m_ObjectHideFlags: 0
