@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &215660341745987225
 GameObject:
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &2484019478575432537
 GameObject:
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &5386050231198811347
 GameObject:
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &5903915339286646052
 GameObject:
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &8165034248721398809
 GameObject:
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bca34d291afef499e3aa5e946c261a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
+  wall: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
   objWalls: []
 --- !u!1 &8673519508735278543
 GameObject:
