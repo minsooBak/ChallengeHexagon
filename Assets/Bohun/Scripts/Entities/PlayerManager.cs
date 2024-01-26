@@ -12,39 +12,13 @@ public enum Character
 
 public class PlayerManager : MonoBehaviour
 {
-    private static PlayerManager _instance = null;
-   public static PlayerManager Instance
-    {
-        get
-        {
-            if(null == _instance)
-            {
-                return null;
-            }
-            else
-            {
-                return _instance;
-            }
-        }
-    }
-
-    private void Awake()
-    {
-        if(_instance == null)
-        {
-            _instance = this;
-        }
-        else if (_instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-
     [SerializeField]private Character _currentChracter = Character.health;
     public Character CurrentCharacter {  get { return _currentChracter; } }
 
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     public void ChangeCharacterRightButtonClick()
     {
         Character[] characterValues = (Character[])Enum.GetValues(typeof(Character));
