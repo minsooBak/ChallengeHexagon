@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("TriggerEnter");
+        AudioManager.instance.SFXPlay(SFX.DAMAGED);
     }
 
     public void GetCharacterStat(Character currentCharacter)
