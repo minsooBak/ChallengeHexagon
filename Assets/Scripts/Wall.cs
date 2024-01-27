@@ -22,7 +22,6 @@ public class Wall : MonoBehaviour
         EventMain _event = collision.GetComponent<EventMain>();
         _event.OnWallEvent(_dataIndex, -_damage);
         _dataIndex = -1;
-        collision.GetComponent<Player>().HP -= _damage;
         gameObject.SetActive(false);
     }
 
