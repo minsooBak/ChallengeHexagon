@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using static EventManager;
 
 public enum WallEvent
 {
