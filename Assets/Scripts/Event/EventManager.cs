@@ -2,6 +2,7 @@ using UnityEngine;
 
 public enum WallEvent
 {
+    None = -1,
     Damage,
     HP,
     HP_MAX,
@@ -13,14 +14,13 @@ public enum WallEvent
 
 public class EventManager : MonoBehaviour
 {
-
     public struct WallData
     {
         public WallEvent Type { get; set; }
         public float Data { get; set; }
     }
-    private const int MAX_SIZE = 5;
-    [SerializeField]private WallData[] _wallDatas = new WallData[MAX_SIZE];
+    private const int MAX_SIZE = 15;
+    private WallData[] _wallDatas = new WallData[MAX_SIZE];
 
     public int AddData(WallEvent type, float data)
     {
@@ -40,6 +40,16 @@ public class EventManager : MonoBehaviour
     public WallData GetData(int index)
     {
         return _wallDatas[index];
+    }
+
+    public int GetType(int index)
+    {
+        return (int)_wallDatas[index].Type;
+    }
+
+    public void DeleteData(int index)
+    {
+        _wallDatas[index].Data = 0;
     }
 
 }

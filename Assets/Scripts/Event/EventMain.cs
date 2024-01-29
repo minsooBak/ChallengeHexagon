@@ -61,7 +61,7 @@ public class EventMain : MonoBehaviour
                     break;
                 }
         }
-        data.Data = 0;
+        _eventManager.DeleteData(index);
     }
 
     private void ChangeHP(int number, bool isMax = false)

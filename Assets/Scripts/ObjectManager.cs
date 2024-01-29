@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private float _dealy = 5f;
     [SerializeField] private int _speed = 5;
     [SerializeField] private int _defaultDamage = 5;
+    private List<int> ints = new List<int>();
+
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -21,16 +25,20 @@ public class ObjectManager : MonoBehaviour
         {
             obj.CreateWall(5, layer++);
         }
+        _gameManager = GameManager.I;
     }
 
 
     private void Update()
     {
-        _time += Time.deltaTime;
-        if(_time > _dealy)
+        if (!_gameManager.isGameOver)
         {
-            TakeOut();
-            _time = 0;
+            _time += Time.deltaTime;
+            if (_time > _dealy)
+            {
+                TakeOut();
+                _time = 0;
+            }
         }
     }
 
@@ -43,9 +51,25 @@ public class ObjectManager : MonoBehaviour
 
     public void SettingEvent(int index)
     {
-        
-        int number =  Random.Range(0, objects.Length);
-        objects[number].SettingData(index);
+        bool isUse = true;
+        while(isUse == true)
+        {
+            isUse = false;
+            int number = Random.Range(0, objects.Length);
+            foreach(int i in ints)
+            {
+                if (i == number)
+                {
+                    isUse = true;
+                    break;
+                }
+            }
+            if(isUse == false)
+            {
+                objects[number].SettingData(index);
+                ints.Add(number);
+            }
+        }
     }
 
     public void ChangeObject(int count, bool isAcitve)
@@ -53,7 +77,8 @@ public class ObjectManager : MonoBehaviour
         if(isAcitve)
         {
             _animator.SetTrigger($"{count}_Active");
-        }else
+        }
+        else
         {
             _animator.SetTrigger($"{count}_Disabled");
         }
@@ -66,6 +91,7 @@ public class ObjectManager : MonoBehaviour
 
     private void TakeOut()
     {
+        ints.Clear();
         foreach (Object obj in objects)
         {
             obj.TakeOutWall(_speed, _defaultDamage);
