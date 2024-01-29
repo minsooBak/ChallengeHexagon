@@ -13,12 +13,6 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private int _defaultDamage = 5;
     private List<int> ints = new List<int>();
 
-
-    [SerializeField] private Light _light;
-    private CameraManager _cameraManager;
-
-    private Color _curColor;
-    [SerializeField]private float curSize;
     private void Awake()
     {
         Instantiate(map, transform);
@@ -31,23 +25,14 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        _cameraManager = CameraManager.I;
-    }
-
     public void CheckOut()
     {
         _time += Time.deltaTime;
-        if (_time > _dealy)
+        if (_time >= _dealy)
         {
-            _curColor = new Color(Random.value, Random.value, Random.value);
-            curSize = Random.Range(100, 260) / 10f;
             TakeOut();
             _time = 0;
         }
-        _light.color = Color.Lerp(_light.color, _curColor, _time / _dealy);
-        _cameraManager.zoomAmount = Mathf.Lerp(_cameraManager.zoomAmount, curSize, _time / _dealy);
     }
 
     public void ObjectUpdate(float dealy, int speed, int defaultDamage)

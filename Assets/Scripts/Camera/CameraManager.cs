@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour
 
     float rotationAngle = 0f;
 
-    Vector3 worldOrigin = new Vector3(0f, 0f, 0f);
-    Vector3 headDirecton = new Vector3(0f, 0f, 0f);
+    Vector3 worldOrigin = Vector3.zero;
+    Vector3 headDirecton =Vector3.zero;
 
     float cameraX = 0f;
     float cameraY = 0f;
@@ -54,7 +54,7 @@ public class CameraManager : MonoBehaviour
             UpdatePositions();
             UpdateCameraPosition();
             UpdateCameraRotation();
-            //CheckAnimationProbability();
+            CheckAnimationProbability();
         }
     }
 
