@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelText : MonoBehaviour
 {
-    public Text levelText;
+    [SerializeField] private Text levelText;
 
     private int levelNum;
     private string levelName;

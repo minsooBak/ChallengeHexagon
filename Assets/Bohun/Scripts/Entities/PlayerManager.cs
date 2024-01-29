@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum Character
@@ -12,28 +10,30 @@ public enum Character
 
 public class PlayerManager : MonoBehaviour
 {
-   public static PlayerManager instance;
+    [SerializeField]private Character _currentChracter = Character.health;
+    public Character CurrentCharacter {  get { return _currentChracter; } }
+
     private void Awake()
     {
-        instance = this;
+        DontDestroyOnLoad(this);
     }
-
-    private Character currentCharacter;
-    public Character CurrentCharacter {  get { return currentCharacter; } }
-
     public void ChangeCharacterRightButtonClick()
     {
         Character[] characterValues = (Character[])Enum.GetValues(typeof(Character));
-        int currentIndex = Array.IndexOf(characterValues, currentCharacter);
+        int currentIndex = Array.IndexOf(characterValues, _currentChracter);
         int nextIndex = (currentIndex + 1) % characterValues.Length;
-        currentCharacter = characterValues[nextIndex];
+        _currentChracter = characterValues[nextIndex];
     }
     public void ChangeCharacterLeftButtonClick()
     {
         Character[] characterValues = (Character[])Enum.GetValues(typeof(Character));
-        int currentIndex = Array.IndexOf(characterValues, currentCharacter);
+        int currentIndex = Array.IndexOf(characterValues, _currentChracter);
         int nextIndex = (currentIndex - 1) % characterValues.Length;
-        currentCharacter = characterValues[nextIndex];
+        if(nextIndex < 0)
+        {
+            nextIndex = characterValues.Length - 1;
+        }
+        _currentChracter = characterValues[nextIndex];
     }
 
 }

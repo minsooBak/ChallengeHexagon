@@ -99,7 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _data: {fileID: 11400000, guid: 5d8cbdb71416d194d8a38ce2c00a44e2, type: 2}
+  _defultMaterial: {fileID: 2100000, guid: 85236bdaa7612d44fb856558e8b681ed, type: 2}
+  _materials:
+  - {fileID: 2100000, guid: 1801b53c116399b40be6d6fe626d0576, type: 2}
+  - {fileID: 2100000, guid: 144f750bf01079542b946fc647ff9d12, type: 2}
+  - {fileID: 2100000, guid: c296a77fec00fde428f43360dcb2bc1d, type: 2}
+  - {fileID: 2100000, guid: 572cd9fb8a94dd840a376e81b12b1147, type: 2}
+  - {fileID: 2100000, guid: 42dbda55e97db294e9e15bff8247bc6f, type: 2}
+  - {fileID: 2100000, guid: b0fd2b23120bee241ae566a9510ddddc, type: 2}
+  - {fileID: 2100000, guid: d8503efec5759a947ad7b92b33d5b573, type: 2}
 --- !u!61 &3675503165559654826
 BoxCollider2D:
   m_ObjectHideFlags: 0

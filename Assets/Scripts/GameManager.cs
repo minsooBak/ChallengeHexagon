@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject GameOverUI;
-    [SerializeField] private GameObject GameOverButton;
 
     private ObjectManager _objectManager;
 
@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
         if (isEvent)
         {
             _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP_MAX, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.Damage, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.SPEED_P, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.MIRROR, 10));
+
+            isEvent = false;
         }
 
         if (!isGameOver)
@@ -106,7 +112,6 @@ public class GameManager : MonoBehaviour
     private void GameOverSequence()
     {
         InGameUI.SetActive(false);
-        GameOverButton.SetActive(false);
         GameOverUI.SetActive(true);
     }
 
@@ -120,10 +125,6 @@ public class GameManager : MonoBehaviour
 
     private void RestartGame()
     {
-        lifeTime = 0f;
-        isGameOver = false;
-        InGameUI.SetActive(true);
-        GameOverButton.SetActive(true);
-        GameOverUI.SetActive(false);
+        SceneManager.LoadScene("Player");
     }
 }

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultScoreUI : MonoBehaviour
 {
-    public Text currentRecordText;
-    public Text bestRecordText;
+    [SerializeField] private Text currentRecordText;
+    [SerializeField] private Text bestRecordText;
 
     private void Update()
     {

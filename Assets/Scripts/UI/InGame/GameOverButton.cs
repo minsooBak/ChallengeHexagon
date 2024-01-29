@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOverButton : MonoBehaviour
 {
-    public Button button;
+    [SerializeField] private Button button;
 
     public void OnClick()
     {

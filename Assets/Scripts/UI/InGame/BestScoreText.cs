@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BestScoreText : MonoBehaviour
 {
-    public Text bestScoreText;
+    [SerializeField] private Text bestScoreText;
 
     private void Update()
     {

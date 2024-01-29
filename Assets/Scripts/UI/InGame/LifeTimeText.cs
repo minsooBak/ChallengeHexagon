@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LifeTimeText : MonoBehaviour
 {
-    public Text lifeTimeText;
+    [SerializeField] private Text lifeTimeText;
 
     private float lifeTime;
 
