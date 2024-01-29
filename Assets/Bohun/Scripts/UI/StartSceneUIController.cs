@@ -24,6 +24,7 @@ public class StartSceneUIController : MonoBehaviour
     public void ShopButtonClick()
     {
         _shopGold.text = "Gold" + _saveDatas._saveData.gold.ToString();
+        _healingPotion.text = _saveDatas._saveData.healingPotion.ToString();
         _mainUI.SetActive(false);
         _shopUI.SetActive(true);
     }    
@@ -38,9 +39,9 @@ public class StartSceneUIController : MonoBehaviour
     }
     public void BuyHealingPition()
     {
-        if (_saveDatas._saveData.gold >= 50)
+        if (_saveDatas._saveData.gold >= 5)
         {
-            _saveDatas._saveData.gold-=50;
+            _saveDatas._saveData.gold-=5;
             _saveDatas._saveData.healingPotion += 1;
             _shopGold.text = "Gold" + _saveDatas._saveData.gold.ToString();
             _healingPotion.text = _saveDatas._saveData.healingPotion.ToString();

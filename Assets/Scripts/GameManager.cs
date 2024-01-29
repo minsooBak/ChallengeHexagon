@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     public float lifeTime = 0f;
     public float bestScore;
-    public int Gold {  get; set; }
     public Level level;
 
 
@@ -143,7 +142,7 @@ public class GameManager : MonoBehaviour
 
     private void CalGold(float time)
     {
-        _saveData._saveData.gold = (int)time/10;
+        _saveData._saveData.gold += (int)time/10;
     }
 }
 
