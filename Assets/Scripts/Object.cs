@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Object : MonoBehaviour
@@ -29,6 +28,11 @@ public class Object : MonoBehaviour
 
     public void SettingData(int index)
     {
+        if(_wall == null)
+        {
+            GameManager.I.EventManager.DeleteData(index);
+            return;
+        }
         _wall.GetComponent<Wall>().SettingData(index);
     }
 }

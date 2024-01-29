@@ -13,8 +13,6 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private int _defaultDamage = 5;
     private List<int> ints = new List<int>();
 
-    private GameManager _gameManager;
-
     private void Awake()
     {
         Instantiate(map, transform);
@@ -25,13 +23,12 @@ public class ObjectManager : MonoBehaviour
         {
             obj.Layer = layer++;
         }
-        _gameManager = GameManager.I;
     }
 
     public void CheckOut()
     {
         _time += Time.deltaTime;
-        if (_time > _dealy)
+        if (_time >= _dealy)
         {
             TakeOut();
             _time = 0;
@@ -52,6 +49,7 @@ public class ObjectManager : MonoBehaviour
             if (ints.Count > 4)
             {
                 GameManager.I.EventManager.DeleteData(index);
+               
             }
             return;
         }
@@ -96,6 +94,7 @@ public class ObjectManager : MonoBehaviour
     private void TakeOut()
     {
         ints.Clear();
+        GameManager.I.isEvent = false;
         foreach (Object obj in objects)
         {
             obj.TakeOutWall(_speed, _defaultDamage);
