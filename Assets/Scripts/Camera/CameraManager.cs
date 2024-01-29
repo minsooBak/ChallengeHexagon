@@ -12,9 +12,9 @@ public class CameraManager : MonoBehaviour
 
 
     [Header("Camera Settings")]
-    [SerializeField] [Range(1, 90)] float tiltAngle = 30f;
-    [SerializeField] [Range(0f, 10f)] float rotationSpeed = 1.0f;
-    [SerializeField] [Range(1f, 30f)] float zoomAmount = 10f;
+    [SerializeField][Range(1, 90)] float tiltAngle = 30f;
+    [SerializeField][Range(0f, 10f)] float rotationSpeed = 1.0f;
+    [SerializeField][Range(1f, 30f)] float zoomAmount = 10f;
     [SerializeField] bool isClockwise = true; // true = 시계방향, false = 반시계방향
 
     float rotationAngle = 0f;
@@ -26,6 +26,10 @@ public class CameraManager : MonoBehaviour
     float cameraY = 0f;
     float cameraZ = 0f;
 
+    bool isAnimationEnd;
+
+    float Temp { get; set;}
+
     private void Awake()
     {
         _transform = mainCamera.GetComponent<Transform>();
@@ -34,7 +38,11 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        
+        tiltAngle = 30f;
+        rotationSpeed = 5.0f;
+        zoomAmount = 10f;
+        isClockwise = true;
+        isAnimationEnd = true;
     }
 
     private void Update()
@@ -45,6 +53,7 @@ public class CameraManager : MonoBehaviour
             UpdatePositions();
             UpdateCameraPosition();
             UpdateCameraRotation();
+            CheckAnimationProbability();
         }
     }
 
@@ -83,7 +92,82 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    
+    private void CheckAnimationProbability()
+    {
+        int random = Random.Range(0, 100);
+        if (random == 0 && isAnimationEnd)
+        {
+            int phase = Random.Range(0, 4);
+            switch (phase)
+            {
+                case 0:
+                    QuickTurn(false); // TurnLeft
+                    break;
+                case 1:
+                    QuickTurn(); // TurnRight
+                    break;
+                case 2:
+                    ZoomInOutSustain(); // ZoomOut
+                    break;
+                case 3:
+                    ZoomInOutSustain(false); // ZoomIn
+                    break;
+            }
+        }
+
+    }
+
+    private void QuickTurn(bool direction = true, float time = 0.8f, float amount = 10.0f)
+    {
+        isAnimationEnd = false;
+        Temp = rotationSpeed;
+        rotationSpeed = amount;
+        isClockwise = direction;
+
+        Invoke("SetRotationSpeedTemp", time);
+    }
+
+
+
+    private void ZoomInOutSustain(bool isOut = true, float time = 3.0f, float amount = 5.0f)
+    {
+        isAnimationEnd = false;
+        Temp = zoomAmount;
+
+        Debug.Log("ZoomInOutSustain");
+
+        if (isOut)
+        {
+            zoomAmount += amount;
+        }
+        else
+        {
+            zoomAmount -= amount;
+        }
+
+        Invoke("SetZoomAmountTemp", time);
+    }
+
+
+    private void SetRotationSpeedTemp()
+    {
+        rotationSpeed = Temp;
+        Invoke("SetAnimationEnd", 1.0f);
+    }
+
+    private void SetZoomAmountTemp()
+    {
+        zoomAmount = Temp;
+        Invoke("SetAnimationEnd", 1.0f);
+    }
+
+    private void SetAnimationEnd()
+    {
+        isAnimationEnd = true;
+    }
+
+
+
 }
 
 
