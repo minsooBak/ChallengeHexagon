@@ -59,7 +59,8 @@ public class GameManager : MonoBehaviour
         {
             lifeTime += Time.deltaTime;
             LevelUpdater();
-            _objectManager.CheckOut();
+            if (_objectManager.CheckAnimationEnd())
+                _objectManager.CheckOut();
             SetBestScore();
         }
         else
@@ -85,31 +86,56 @@ public class GameManager : MonoBehaviour
                 }
             case < 20f:
                 {
+                    if (level == Level.point)
+                    {
+                        _objectManager.ObjectUpdate(4, 12, 7);
+                        _objectManager.ChangeObject(1, false);
+                    }
                     level = Level.line;
                     Stage(Random.Range(10, 101));
-                    _objectManager.ObjectUpdate(4, 15, 10);
                     break;
                 }
             case < 30f:
                 {
+                    if (level == Level.line)
+                    {
+                        _objectManager.ObjectUpdate(3, 15, 10);
+                        _objectManager.ChangeObject(1, true);
+                    }
                     level = Level.triangle;
                     Stage(Random.Range(20, 101));
                     break;
                 }
             case < 45f:
                 {
+                    if (level == Level.triangle)
+                    {
+                        _objectManager.ObjectUpdate(2, 17, 15);
+                        _objectManager.ChangeObject(1, false);
+                        _objectManager.ChangeObject(2, false);
+                    }
                     level = Level.square;
                     Stage(Random.Range(30, 101));
                     break;
                 }
             case < 60f:
                 {
+                    if (level == Level.triangle)
+                    {
+                        _objectManager.ObjectUpdate(2, 20, 20);
+                        _objectManager.ChangeObject(2, true);
+                    }
                     level = Level.pentagon;
                     Stage(Random.Range(40, 101));
                     break;
                 }
             case >= 60f:
                 {
+                    if (level == Level.triangle)
+                    {
+                        _objectManager.ObjectUpdate(1.5f, 20, 30);
+                        _objectManager.ChangeObject(1, true);
+                    }
                     level = Level.hexagon;
                     Stage(Random.Range(50, 101));
                     break;
@@ -166,7 +192,7 @@ public class GameManager : MonoBehaviour
                     int r = Random.Range(0, 2);
                     if (r == 0)
                     {
-                        _objectManager.SettingEvent(EventManager.AddData(WallEvent.SPEED_O, 10 * (int)level));
+                        _objectManager.SettingEvent(EventManager.AddData(WallEvent.SPEED_O, 2 * (int)level));
                     }
                     else
                     {

@@ -35,8 +35,14 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    public bool CheckAnimationEnd()
+    {
+        return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f;
+    }
+
     public void ObjectUpdate(float dealy, int speed, int defaultDamage)
     {
+        //_time = 0f;
         _dealy = dealy;
         _speed = speed;
         _defaultDamage = defaultDamage;

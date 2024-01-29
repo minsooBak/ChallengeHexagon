@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
@@ -9,16 +10,29 @@ public class Wall : MonoBehaviour
     private SpriteRenderer _renderer;
     private EventManager _eventManager;
     private GameManager _gameManager;
-
     [SerializeField] private Material _defultMaterial;
     [SerializeField] private Material[] _materials;
+
+    private void FixedUpdate()
+    {
+        if(transform.parent.GetComponent<Transform>().localScale.x <= 0.1f)
+        {
+            _renderer.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else if(_renderer.enabled == false)
+        {
+            _renderer.enabled = true;
+            GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
 
     void Update()
     {
         if (!_gameManager.isGameOver)
         {
             CheckUpdate();
-            if (transform.localPosition.y >= 0.56f)
+            if (transform.localPosition.y >= 0.55f)
             {
                 if (_dataIndex != -1)
                 {

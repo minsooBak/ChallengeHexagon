@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41456cb9876231489e8774096032640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _defultMaterial: {fileID: 2100000, guid: 85236bdaa7612d44fb856558e8b681ed, type: 2}
   _materials:
   - {fileID: 2100000, guid: 1801b53c116399b40be6d6fe626d0576, type: 2}
@@ -151,5 +150,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 1}
+  m_Size: {x: 0.07, y: 1}
   m_EdgeRadius: 0

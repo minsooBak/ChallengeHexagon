@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     private int _size;
 
-    private Queue<GameObject> _pool;
+    protected Queue<GameObject> _pool;
 
     private void Awake()
     {

@@ -12,12 +12,6 @@ public class Object : MonoBehaviour
         _pool = GetComponent<ObjectPool>();
     }
 
-    private void Update()
-    {
-        if (transform.localScale.x < 1)
-            gameObject.SetActive(false);
-    }
-
     public void TakeOutWall(int speed, int damage)
     {
         _wall = _pool.SpawnFromPool();
