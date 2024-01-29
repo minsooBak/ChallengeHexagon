@@ -2,30 +2,33 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    private float _speed = 5f;
     private int _damage = 0;
     private int _dataIndex = -1;
 
     private SpriteRenderer _renderer;
     private EventManager _eventManager;
+    private GameManager _gameManager;
 
     [SerializeField] private Material _defultMaterial;
     [SerializeField] private Material[] _materials;
 
     void Update()
     {
-        CheckUpdate();
-        if (transform.localPosition.y >= 0.56f)
+        if (!_gameManager.isGameOver)
         {
-            if (_dataIndex != -1)
+            CheckUpdate();
+            if (transform.localPosition.y >= 0.56f)
             {
-                GameManager.I.EventManager.DeleteData(_dataIndex);
-                _dataIndex = -1;
+                if (_dataIndex != -1)
+                {
+                    GameManager.I.EventManager.DeleteData(_dataIndex);
+                    _dataIndex = -1;
+                }
+                gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, _speed * Time.deltaTime);
         }
-        transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, _speed * Time.deltaTime);
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,13 +44,13 @@ public class Wall : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _renderer.material = _defultMaterial;
-        _eventManager = GameManager.I.EventManager;
+        _gameManager = GameManager.I;
+        _eventManager = _gameManager.EventManager;
         _renderer.sortingOrder = layer;
     }
 
     public void SettingData(int index)
     {
-        //TODO : Type에 따른 메테리얼 변경
         if (index == -1)
         {
             _renderer.material = _defultMaterial;

@@ -11,7 +11,9 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private float _dealy = 5f;
     [SerializeField] private int _speed = 5;
     [SerializeField] private int _defaultDamage = 5;
-    [SerializeField] private List<int> ints = new List<int>();
+    private List<int> ints = new List<int>();
+
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -23,16 +25,20 @@ public class ObjectManager : MonoBehaviour
         {
             obj.CreateWall(5, layer++);
         }
+        _gameManager = GameManager.I;
     }
 
 
     private void Update()
     {
-        _time += Time.deltaTime;
-        if(_time > _dealy)
+        if (!_gameManager.isGameOver)
         {
-            TakeOut();
-            _time = 0;
+            _time += Time.deltaTime;
+            if (_time > _dealy)
+            {
+                TakeOut();
+                _time = 0;
+            }
         }
     }
 
@@ -71,7 +77,8 @@ public class ObjectManager : MonoBehaviour
         if(isAcitve)
         {
             _animator.SetTrigger($"{count}_Active");
-        }else
+        }
+        else
         {
             _animator.SetTrigger($"{count}_Disabled");
         }
