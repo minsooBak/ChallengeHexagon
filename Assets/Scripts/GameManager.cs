@@ -1,8 +1,11 @@
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
+
+    public SaveData saveData;
 
     public bool isGameOver = false;
 
@@ -28,6 +31,22 @@ public class GameManager : MonoBehaviour
         square,
         pentagon,
         hexagon,
+    }
+
+    [ContextMenu("To Json Data")]
+    void SaveData()
+    {
+        string jsonData = JsonUtility.ToJson(saveData, true);
+        string path = Path.Combine(Application.dataPath, "SaveData.json");
+        File.WriteAllText(path, jsonData);
+    }
+
+    [ContextMenu("From Json Data")]
+    void LoadData()
+    {
+        string path = Path.Combine(Application.dataPath, "SaveData.json");
+        string jsonData = File.ReadAllText(path);
+        saveData = JsonUtility.FromJson<SaveData>(jsonData);
     }
 
     private void Awake()
@@ -123,4 +142,13 @@ public class GameManager : MonoBehaviour
         GameOverButton.SetActive(true);
         GameOverUI.SetActive(false);
     }
+
 }
+
+[System.Serializable]
+public class SaveData
+{
+    public float bestLiteTime;
+}
+
+
