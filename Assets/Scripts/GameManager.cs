@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
         if (isEvent)
         {
             _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.HP_MAX, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.Damage, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.SPEED_P, 10));
+            _objectManager.SettingEvent(EventManager.AddData(WallEvent.MIRROR, 10));
+
+            isEvent = false;
         }
 
         if (!isGameOver)
