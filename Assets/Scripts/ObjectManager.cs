@@ -23,7 +23,7 @@ public class ObjectManager : MonoBehaviour
         int layer = 1;
         foreach (Object obj in objects)
         {
-            obj.CreateWall(5, layer++);
+            obj.Layer = layer++;
         }
         _gameManager = GameManager.I;
     }
