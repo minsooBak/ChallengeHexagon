@@ -4,14 +4,14 @@ public class CameraManager : MonoBehaviour
 {
     public Camera mainCamera;
     public static CameraManager I;
-
+    
     Transform _transform;
 
 
     [Header("Camera Settings")]
     [SerializeField] [Range(1, 90)] float tiltAngle = 1f;
     [SerializeField] [Range(0f, 10f)] float rotationSpeed = 1.0f;
-    [SerializeField] [Range(1f, 30f)] float zoomAmount = 10f;
+    [SerializeField] [Range(10f, 25f)] public float zoomAmount = 10f;
     [SerializeField] bool isClockwise = true; // true = 시계방향, false = 반시계방향
 
     float rotationAngle = 0f;
@@ -31,10 +31,6 @@ public class CameraManager : MonoBehaviour
         I = this;
     }
 
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
