@@ -43,10 +43,13 @@ public class Wall : MonoBehaviour
 
     public void Setting(int layer)
     {
-        _renderer = GetComponent<SpriteRenderer>();
-        _renderer.material = _defultMaterial;
-        _gameManager = GameManager.I;
-        _eventManager = _gameManager.EventManager;
+        if(_gameManager == null)
+        {
+            _renderer = GetComponent<SpriteRenderer>();
+            _renderer.material = _defultMaterial;
+            _gameManager = GameManager.I;
+            _eventManager = _gameManager.EventManager;
+        }
         _renderer.sortingOrder = layer;
     }
 

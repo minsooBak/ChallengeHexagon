@@ -57,7 +57,7 @@ public class EventMain : MonoBehaviour
                 }
             case WallEvent.Damage:
                 {
-                    ChangeHP((int)data.Data + damage);
+                    ChangeHP((int)-(data.Data) + damage);
                     break;
                 }
         }
