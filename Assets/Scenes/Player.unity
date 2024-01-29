@@ -1684,10 +1684,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879d9e6b00efdb34ebe1005fa15ac8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    bestLiteTime: 0
   isGameOver: 0
   InGameUI: {fileID: 2135212763}
   GameOverUI: {fileID: 499329871}
-  GameOverButton: {fileID: 0}
   lifeTime: 0
   bestScore: 0
   level: 0
@@ -2073,12 +2074,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d062ecfebd4a04dbff2dae1453f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2484019478575432537, guid: a89666ae7d67a4b43a60082e81c92381, type: 3}
+  map: {fileID: 2484019478575432537, guid: 414e93a40b41c0f4cb7b446429886091, type: 3}
   objects: []
   _dealy: 5
   _speed: 5
   _defaultDamage: 5
-  ints: 
 --- !u!4 &1010233669
 Transform:
   m_ObjectHideFlags: 0
