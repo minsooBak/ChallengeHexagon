@@ -43,6 +43,11 @@ public class AudioManager : MonoBehaviour
         Init();
     }
 
+    private void Start()
+    {
+        BGMPlay(BGM.Lobby);
+    }
+
     private void Init()
     {
         // 배경음("SFX") 믹서 그룹 가져오기
@@ -112,14 +117,9 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.Play();
     }
 
-    public void BGMFadeIn()
+    public void ApplyLowPassFilter()
     {
-        // TODO
-    }
-
-    public void BGMFadeOut()
-    {
-        // TODO
+        //TODO
     }
 
 

@@ -9,6 +9,7 @@ public class StartSceneUIController : MonoBehaviour
     private SaveDatas _saveDatas;
     [SerializeField] private GameObject _mainUI;
     [SerializeField] private GameObject _shopUI;
+    [SerializeField] private GameObject _audioUI;
 
     [SerializeField] private Text _shopGold;
     [SerializeField] private Text _healingPotion;
@@ -33,6 +34,19 @@ public class StartSceneUIController : MonoBehaviour
         _mainUI.SetActive(true);
         _shopUI.SetActive(false);
     }
+
+    public void ShowAudioSetting()
+    {
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        _audioUI.SetActive(true);
+    }
+
+    public void HideAudioSetting()
+    {
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        _audioUI.SetActive(false);
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Player");
