@@ -16,14 +16,23 @@ public class AudioMixerController : MonoBehaviour
 
     private void Awake()
     {
-        _masterVolumeSlider.onValueChanged.AddListener();
-        _bgmVolumeSlider.onValueChanged.AddListener();
-        _sfxVolumeSlider.onValueChanged.AddListener();
+        _masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
+        _bgmVolumeSlider.onValueChanged.AddListener(SetBGMVolume);
+        _sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     private void SetMasterVolume(float value)
     {
-        _audioMixer.SetFloat();
+        _audioMixer.SetFloat("Master", Mathf.Log10(value)*20);
+    }
 
+    private void SetBGMVolume(float value)
+    {
+        _audioMixer.SetFloat("BGM", Mathf.Log10(value) * 20);
+    }
+
+    private void SetSFXVolume(float value)
+    {
+        _audioMixer.SetFloat("SFX", Mathf.Log10(value) * 20);
     }
 }
