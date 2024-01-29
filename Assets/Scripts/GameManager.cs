@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
         EventManager = gameObject.AddComponent<EventManager>();
+        Application.targetFrameRate = 60;
     }
 
     private void Update()
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
         {
             lifeTime += Time.deltaTime;
             LevelUpdater();
+            _objectManager.CheckOut();
         }
         else
         {
