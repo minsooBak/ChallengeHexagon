@@ -232,7 +232,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0, g: 0.4439123, b: 0.6509434, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1685,7 +1685,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveData:
-    bestLiteTime: 0
+    bestLifeTime: 0
+    gold: 0
+    healingPotion: 0
   isGameOver: 0
   InGameUI: {fileID: 2135212763}
   GameOverUI: {fileID: 499329871}

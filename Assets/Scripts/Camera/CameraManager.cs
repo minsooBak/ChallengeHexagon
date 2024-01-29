@@ -39,8 +39,8 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        tiltAngle = 30f;
-        rotationSpeed = 5.0f;
+        tiltAngle = 1f;
+        rotationSpeed = 1.0f;
         zoomAmount = 10f;
         isClockwise = true;
         isAnimationEnd = true;
@@ -54,7 +54,7 @@ public class CameraManager : MonoBehaviour
             UpdatePositions();
             UpdateCameraPosition();
             UpdateCameraRotation();
-            CheckAnimationProbability();
+            //CheckAnimationProbability();
         }
     }
 
