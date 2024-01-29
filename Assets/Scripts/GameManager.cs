@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 
     public EventManager EventManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
-    public ObjectPool ObjectPool { get; private set; }
 
 
     [SerializeField] private GameObject InGameUI;
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
         EventManager = gameObject.AddComponent<EventManager>();
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        ObjectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
     }
 
     private void Update()

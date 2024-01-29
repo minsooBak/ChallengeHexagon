@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: Wall
-    prefab: {fileID: 8382406494717612794, guid: 0a8849d075e30234dbd350fed364f227, type: 3}
+    prefab: {fileID: 4806633263373668133, guid: d008307c8638a2a4499c1bf5a968509b, type: 3}
     size: 60
 --- !u!1001 &359285675918493134
 PrefabInstance:

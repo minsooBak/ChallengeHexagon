@@ -1,48 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObjectPool : MonoBehaviour
 {
-    [System.Serializable]
-    public struct Pool
-    {
-        public string tag;
-        public GameObject prefab;
-        public int size;
-    }
 
     [SerializeField]
-    private List<Pool> pools;
-    private Dictionary<string, Queue<GameObject>> poolDictionary;
+    private GameObject _prefab;
+    [SerializeField]
+    private int _size;
+
+    private Queue<GameObject> _pool;
 
     private void Awake()
     {
+        _pool = new Queue<GameObject>();
 
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        foreach (var pool in pools)
+        for(int i = 0; i < _size; ++i)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
-            for (int i = 0; i < pool.size; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
-            }
-            poolDictionary.Add(pool.tag, objectPool);
+            GameObject obj = Instantiate(_prefab, transform);
+            obj.SetActive(false);
+            _pool.Enqueue(obj);
         }
     }
 
-    public GameObject SpawnFromPool(string tag)
+    public GameObject SpawnFromPool()
     {
-        if (!poolDictionary.ContainsKey(tag))
-            return null;
-
-        GameObject obj = poolDictionary[tag].Dequeue();
-        poolDictionary[tag].Enqueue(obj);
+        GameObject obj = _pool.Dequeue();
+        _pool.Enqueue(obj);
 
         return obj;
     }
-
-
 }
