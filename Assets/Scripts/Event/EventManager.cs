@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour
 
     public int GetType(int index)
     {
-        return (int)_wallDatas[index % 5].Type;
+        return (int)_wallDatas[index].Type;
     }
 
     public void DeleteData(int index)
