@@ -1,31 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Object : MonoBehaviour
 {
     public GameObject wall;
-    [SerializeField]private GameObject[] _objWalls;
+    [SerializeField]private Queue<GameObject> _objWalls;
 
 
     public void TakeOutWall(int speed, int damage)
     {
-        for(int i = 0; i < _objWalls.Length; i++)
+        var obj = _objWalls.Dequeue();
+        if(obj.activeSelf)
         {
-            if (_objWalls[i].activeSelf == false)
-            {
-                _objWalls[i].GetComponent<Wall>().Init(speed, damage);
-                _objWalls[i].SetActive(true);
-                break;
-            }
+            Debug.Log("Wall Pool over");
         }
+        obj.GetComponent<Wall>().Init(speed, damage);
+        obj.SetActive(true);
+        _objWalls.Enqueue(obj);
     }
 
     public void SettingData(int index)
     {
-        for (int i = 0; i < _objWalls.Length; i++)
+        foreach(GameObject obj in _objWalls)
         {
-            if (_objWalls[i].activeSelf == false)
+            if (obj.activeSelf == false)
             {
-                _objWalls[i].GetComponent<Wall>().SettingData(index);
+                obj.GetComponent<Wall>().SettingData(index);
                 break;
             }
         }
@@ -33,13 +33,14 @@ public class Object : MonoBehaviour
 
     public void CreateWall(int count, int layer)
     {
-        _objWalls = new GameObject[count];
+        _objWalls = new Queue<GameObject>(count);
         for (int i = 0; i < count; i++) 
         {
-            _objWalls[i] = Instantiate(wall, transform);
-            var w = _objWalls[i].GetComponent<Wall>();
+            var obj = Instantiate(wall, transform);
+            var w = obj.GetComponent<Wall>();
             w.Setting(layer);
-            _objWalls[i].SetActive(false);
+            obj.SetActive(false);
+            _objWalls.Enqueue(obj);
         }
     }
 }

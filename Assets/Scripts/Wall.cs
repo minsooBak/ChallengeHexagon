@@ -24,6 +24,7 @@ public class Wall : MonoBehaviour
                 {
                     GameManager.I.EventManager.DeleteData(_dataIndex);
                     _dataIndex = -1;
+                    _renderer.material = _defultMaterial;
                 }
                 gameObject.SetActive(false);
             }
@@ -51,23 +52,12 @@ public class Wall : MonoBehaviour
 
     public void SettingData(int index)
     {
-        if (index == -1)
-        {
-            _renderer.material = _defultMaterial;
-        }
-        else
-        {
-            _dataIndex = index;
-            _renderer.material = _materials[_eventManager.GetType(index)];
-        }
+        _dataIndex = index;
+        _renderer.material = _materials[_eventManager.GetType(index)];
     }
 
     public void Init(int speed, int damage)
     {
-        if(_dataIndex == -1)
-        {
-            _renderer.material = _defultMaterial;
-        }
         _speed = speed;
         _damage = damage;
         transform.localPosition = new Vector3(0, -0.4f, 0);

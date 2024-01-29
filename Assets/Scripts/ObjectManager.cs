@@ -28,17 +28,13 @@ public class ObjectManager : MonoBehaviour
         _gameManager = GameManager.I;
     }
 
-
-    private void Update()
+    public void CheckOut()
     {
-        if (!_gameManager.isGameOver)
+        _time += Time.deltaTime;
+        if (_time > _dealy)
         {
-            _time += Time.deltaTime;
-            if (_time > _dealy)
-            {
-                TakeOut();
-                _time = 0;
-            }
+            TakeOut();
+            _time = 0;
         }
     }
 
@@ -51,6 +47,14 @@ public class ObjectManager : MonoBehaviour
 
     public void SettingEvent(int index)
     {
+        if (index == -1 || ints.Count > 4)
+        {
+            if (ints.Count > 4)
+            {
+                GameManager.I.EventManager.DeleteData(index);
+            }
+            return;
+        }
         bool isUse = true;
         while(isUse == true)
         {
