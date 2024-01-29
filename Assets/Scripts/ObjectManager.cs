@@ -13,8 +13,12 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private int _defaultDamage = 5;
     private List<int> ints = new List<int>();
 
-    private GameManager _gameManager;
 
+    [SerializeField] private Light _light;
+    private CameraManager _cameraManager;
+
+    private Color _curColor;
+    [SerializeField]private float curSize;
     private void Awake()
     {
         Instantiate(map, transform);
@@ -25,7 +29,11 @@ public class ObjectManager : MonoBehaviour
         {
             obj.Layer = layer++;
         }
-        _gameManager = GameManager.I;
+    }
+
+    private void Start()
+    {
+        _cameraManager = CameraManager.I;
     }
 
     public void CheckOut()
@@ -33,9 +41,13 @@ public class ObjectManager : MonoBehaviour
         _time += Time.deltaTime;
         if (_time > _dealy)
         {
+            _curColor = new Color(Random.value, Random.value, Random.value);
+            curSize = Random.Range(100, 260) / 10f;
             TakeOut();
             _time = 0;
         }
+        _light.color = Color.Lerp(_light.color, _curColor, _time / _dealy);
+        _cameraManager.zoomAmount = Mathf.Lerp(_cameraManager.zoomAmount, curSize, _time / _dealy);
     }
 
     public void ObjectUpdate(float dealy, int speed, int defaultDamage)
@@ -52,6 +64,7 @@ public class ObjectManager : MonoBehaviour
             if (ints.Count > 4)
             {
                 GameManager.I.EventManager.DeleteData(index);
+               
             }
             return;
         }
@@ -96,6 +109,7 @@ public class ObjectManager : MonoBehaviour
     private void TakeOut()
     {
         ints.Clear();
+        GameManager.I.isEvent = false;
         foreach (Object obj in objects)
         {
             obj.TakeOutWall(_speed, _defaultDamage);
