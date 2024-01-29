@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum BGM
 {
@@ -30,6 +31,10 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] sfxPlayers;
     private int sfxChannelIndex;
 
+
+    [Header("AudioMixer")]
+    [SerializeField] private AudioMixer _audioMixer;
+
     
 
     private void Awake()
@@ -40,6 +45,12 @@ public class AudioManager : MonoBehaviour
 
     private void Init()
     {
+        // 배경음("SFX") 믹서 그룹 가져오기
+        AudioMixerGroup bgmMixerGroup = _audioMixer.FindMatchingGroups("Master/BGM")[0];
+
+        // 효과음("SFX") 믹서 그룹 가져오기
+        AudioMixerGroup sfxMixerGroup = _audioMixer.FindMatchingGroups("Master/SFX")[0];
+
         // 배경음 초기화
         GameObject bgmObject = new GameObject("BgmPlayer");
         bgmObject.transform.parent = transform;
@@ -47,14 +58,14 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.playOnAwake = false;
         bgmPlayer.loop = true;
         bgmPlayer.volume = bgmVolume;
-        
+        bgmPlayer.outputAudioMixerGroup = bgmMixerGroup;
 
         // 효과음 초기화
-
         sfxPlayers = new AudioSource[channels];
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxChannelIndex = 0;
+        
 
         for (int i = 0; i < sfxPlayers.Length; ++i)
         {
@@ -62,6 +73,7 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].loop = false;
             sfxPlayers[i].volume = sfxVolume;
+            sfxPlayers[i].outputAudioMixerGroup = sfxMixerGroup;
         }
     }
 
