@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LifeTimeText : MonoBehaviour
 {
-    public Text lifeTimeText;
+    [SerializeField] private Text lifeTimeText;
 
     private float lifeTime;
 

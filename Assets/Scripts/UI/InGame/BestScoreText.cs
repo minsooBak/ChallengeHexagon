@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BestScoreText : MonoBehaviour
 {
-    public Text bestScoreText;
+    [SerializeField] private Text bestScoreText;
 
     private void Update()
     {

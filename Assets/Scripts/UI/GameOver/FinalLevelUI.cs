@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class FinalLevelUI : MonoBehaviour
 {
-    public Text levelNumText;
-    public Text levelStringText;
-    public Image levelImage;
+    [SerializeField] private Text levelNumText;
+    [SerializeField] private Text levelStringText;
+    [SerializeField] private Image levelImage;
 
     private int levelNum;
     private Sprite[] polygons;

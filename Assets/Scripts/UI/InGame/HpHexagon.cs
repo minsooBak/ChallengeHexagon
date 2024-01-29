@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class HpHexagon : MonoBehaviour
 {
-    public GameObject hexagon;
+    [SerializeField] private GameObject hexagon;
 
-    [SerializeField]
-    [Range(0, 100)] private float hp = 100;
+    [SerializeField] [Range(0, 100)] private float hp;
 
     private SpriteRenderer _sprite;
 
     private void Awake()
     {
         _sprite = hexagon.GetComponent<SpriteRenderer>();
+        hp = 100;
     }
 
     private void Update()
