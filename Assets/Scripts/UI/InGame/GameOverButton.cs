@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class GameOverButton : MonoBehaviour
 {
-    public Button button;
+    [SerializeField] private Button button;
 
     public void OnClick()
     {
