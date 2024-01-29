@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d062ecfebd4a04dbff2dae1453f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2484019478575432537, guid: a89666ae7d67a4b43a60082e81c92381, type: 3}
+  map: {fileID: 2484019478575432537, guid: 414e93a40b41c0f4cb7b446429886091, type: 3}
   objects: []
   _dealy: 5
   _speed: 5
@@ -2762,6 +2762,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afa55ab2c8514064aa3e2af80fac18a9, type: 3}
   sfxVolume: 0.2
   channels: 16
+  _audioMixer: {fileID: 24100000, guid: ba8213b17d6f66347a0398faa519d075, type: 2}
 --- !u!4 &1612702297
 Transform:
   m_ObjectHideFlags: 0

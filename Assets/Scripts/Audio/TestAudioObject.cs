@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 // 음원을 재생 테스트를 위한 테스트 클래스입니다.
 public class TestAudioObject : MonoBehaviour
 {
     AudioManager audioManager;
+
+
 
     void Start()
     {
@@ -40,4 +43,7 @@ public class TestAudioObject : MonoBehaviour
     {
         audioManager.SFXPlay(SFX.DAMAGED);
     }
+
+
+
 }
