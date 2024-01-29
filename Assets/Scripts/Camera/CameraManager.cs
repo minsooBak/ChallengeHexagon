@@ -18,6 +18,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] bool isClockwise = true; // true = 시계방향, false = 반시계방향
 
     float rotationAngle = 0f;
+    float zoomDestination = 0f;
+    float zoomSpeed = 0f;
 
     Vector3 worldOrigin = new Vector3(0f, 0f, 0f);
     Vector3 headDirecton = new Vector3(0f, 0f, 0f);
@@ -41,6 +43,8 @@ public class CameraManager : MonoBehaviour
         tiltAngle = 30f;
         rotationSpeed = 5.0f;
         zoomAmount = 10f;
+        zoomDestination = zoomAmount;
+        zoomSpeed = 1.0f;
         isClockwise = true;
         isAnimationEnd = true;
     }
@@ -53,6 +57,7 @@ public class CameraManager : MonoBehaviour
             UpdatePositions();
             UpdateCameraPosition();
             UpdateCameraRotation();
+            UpdateZoom();
             CheckAnimationProbability();
         }
     }
@@ -78,6 +83,11 @@ public class CameraManager : MonoBehaviour
     private void UpdateCameraRotation()
     {
         _transform.rotation = Quaternion.LookRotation(worldOrigin - _transform.position, headDirecton);
+    }
+
+    private void UpdateZoom()
+    {
+        zoomAmount = Mathf.Lerp(zoomAmount, zoomDestination, Time.deltaTime * zoomSpeed);
     }
 
     private int ReturnDirection(bool clockwise)
@@ -129,25 +139,50 @@ public class CameraManager : MonoBehaviour
 
 
 
-    private void ZoomInOutSustain(bool isOut = true, float time = 3.0f, float amount = 5.0f)
+    private void ZoomInOutSustain(bool isOut = true, float time = 3.0f, float amount = 5.0f, float speed = 1.0f)
     {
         isAnimationEnd = false;
         Temp = zoomAmount;
 
-        Debug.Log("ZoomInOutSustain");
-
         if (isOut)
         {
-            zoomAmount += amount;
+            Debug.Log("ZoomOut");
+            ZoomOut(amount, speed);
         }
         else
         {
-            zoomAmount -= amount;
+            Debug.Log("ZoomIn");
+            ZoomIn(amount, speed);
         }
 
-        Invoke("SetZoomAmountTemp", time);
+        Invoke("SetZoomDestinationTemp", time);
     }
 
+    private void ZoomIn(float amount, float speed)
+    {
+        zoomDestination = zoomAmount - amount;
+        zoomSpeed = speed;
+    }
+
+    private void ZoomOut(float amount, float speed)
+    {
+        zoomDestination = zoomAmount + amount;
+        zoomSpeed = speed;
+    }
+
+    private void SetZoomDestinationTemp()
+    {
+        zoomDestination = Temp;
+        zoomSpeed = 5.0f;
+        Invoke("SetZoomAmountTemp", 1.0f);
+    }
+    private void SetZoomAmountTemp()
+    {
+        zoomAmount = Temp;
+        zoomDestination = zoomAmount;
+        zoomSpeed = 1.0f;
+        Invoke("SetAnimationEnd", 1.0f);
+    }
 
     private void SetRotationSpeedTemp()
     {
@@ -155,11 +190,6 @@ public class CameraManager : MonoBehaviour
         Invoke("SetAnimationEnd", 1.0f);
     }
 
-    private void SetZoomAmountTemp()
-    {
-        zoomAmount = Temp;
-        Invoke("SetAnimationEnd", 1.0f);
-    }
 
     private void SetAnimationEnd()
     {
