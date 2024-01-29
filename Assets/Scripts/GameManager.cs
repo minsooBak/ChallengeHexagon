@@ -1,4 +1,5 @@
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameOverUI;
 
     private ObjectManager _objectManager;
+    private SaveDatas _saveData;
 
     public float lifeTime = 0f;
-    public float bestScore = 0f;
+    public float bestScore;
+    public int Gold {  get; set; }
     public Level level;
+
 
     public bool isEvent = false;
 
@@ -33,22 +37,6 @@ public class GameManager : MonoBehaviour
         hexagon,
     }
 
-    [ContextMenu("To Json Data")]
-    void SaveData()
-    {
-        string jsonData = JsonUtility.ToJson(saveData, true);
-        string path = Path.Combine(Application.dataPath, "SaveData.json");
-        File.WriteAllText(path, jsonData);
-    }
-
-    [ContextMenu("From Json Data")]
-    void LoadData()
-    {
-        string path = Path.Combine(Application.dataPath, "SaveData.json");
-        string jsonData = File.ReadAllText(path);
-        saveData = JsonUtility.FromJson<SaveData>(jsonData);
-    }
-
     private void Awake()
     {
         if (I == null)
@@ -60,8 +48,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
+        _saveData = GameObject.Find("SaveData").GetComponent<SaveDatas>();
         EventManager = gameObject.AddComponent<EventManager>();
+        bestScore = _saveData._saveData.bestLifeTime;
         Application.targetFrameRate = 60;
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -82,10 +73,14 @@ public class GameManager : MonoBehaviour
             lifeTime += Time.deltaTime;
             LevelUpdater();
             _objectManager.CheckOut();
+            SetBestScore();
         }
         else
         {
-            SetBestScore();
+            Time.timeScale = 0;
+            _saveData._saveData.bestLifeTime = bestScore;
+            CalGold(lifeTime);
+            _saveData.SaveData();
             GameOverSequence();
             CheckAnyButtonInput();
         }
@@ -146,12 +141,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Player");
     }
 
-}
-
-[System.Serializable]
-public class SaveData
-{
-    public float bestLiteTime;
+    private void CalGold(float time)
+    {
+        _saveData._saveData.gold = (int)time/10;
+    }
 }
 
 
