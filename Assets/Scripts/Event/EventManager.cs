@@ -30,7 +30,7 @@ public class EventManager : MonoBehaviour
             {
                 _wallDatas[i].Type = type;
                 _wallDatas[i].Data = data;
-                return i % 5;
+                return i;
             }
         }
         Debug.Log("Wall Data Size out");
@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour
 
     public int GetType(int index)
     {
-        return (int)_wallDatas[index].Type;
+        return (int)_wallDatas[index % 5].Type;
     }
 
     public void DeleteData(int index)
