@@ -48,7 +48,7 @@ public class Score : TextBaseUI
         Active(resultUI);
         saveData.bestLifeTime = _gameManager.lifeTime > saveData.bestLifeTime ? _gameManager.lifeTime : saveData.bestLifeTime;
         _currentRecordText.text = _gameManager.lifeTime.ToString("F2");
-        _resultBestScoreText.text = saveData.bestLifeTime.ToString("F2");
+        _resultBestScoreText.text = bestScore.ToString("F2");
     }
 
     private void LoadBestScore()
