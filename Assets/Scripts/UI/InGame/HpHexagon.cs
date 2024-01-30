@@ -24,7 +24,7 @@ public class HpHexagon : MonoBehaviour
         originScale = hexagon[0].transform.localScale;
         _player = GameObject.Find("Player").GetComponent<Player>();
         chunk = 0f;
-        bpm = 110;
+        bpm = 183;
         timer = 0f;
         count = 1;
         zoomSpeed = 100.0f;

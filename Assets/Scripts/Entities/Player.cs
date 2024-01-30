@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     private PlayerManager _playerManager;
     private SaveDatas _saveDatas;
     private Renderer _renderer;
-    private string _playerManagerString = "PlayerData";
 
     public float Speed { get { return _speed; } set { _speed = value; } }
     public int HP { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, _maxHP); } }
