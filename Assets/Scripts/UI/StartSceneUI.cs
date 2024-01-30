@@ -18,6 +18,7 @@ public class StartSceneUI : TextDataUI
 
     [SerializeField] private TextMeshProUGUI _shopGold;
     [SerializeField] private TextMeshProUGUI _healingPotion;
+    [SerializeField] private TextMeshProUGUI _inputField;
 
     protected override void Start()
     {
@@ -61,6 +62,7 @@ public class StartSceneUI : TextDataUI
     public void StartGame()
     {
         SceneManager.LoadScene("Player");
+        GameManager.I.PlayerManager.PlayerName = _inputField.text;
         GameManager.I.AudioManager.SFXPlay(SFX.ROUND_START);
         GameManager.I.AudioManager.BGMChange(BGM.ROUND);
     }

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
     public EventManager EventManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
+    public PlayerManager PlayerManager { get; private set; }
     
     public float lifeTime = 0f;
 
