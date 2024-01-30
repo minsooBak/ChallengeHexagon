@@ -118,10 +118,13 @@ public class Score : TextBaseUI
     private void GoHome()
     {
         SceneManager.LoadScene("CharacterSelect");
+        GameManager.I.AudioManager.BGMChange(BGM.Lobby);
+        GameManager.I.AudioManager.ResetAudioEffect();
     }
 
     private void Restart()
     {
         SceneManager.LoadScene("Player");
+        GameManager.I.AudioManager.ResetAudioEffect();
     }
 }

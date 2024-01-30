@@ -61,9 +61,9 @@ public class StartSceneUI : TextDataUI
 
     public void StartGame()
     {
+        GameManager.I.AudioManager.SFXPlay(SFX.ROUND_START);
         SceneManager.LoadScene("Player");
         GameManager.I.PlayerManager.PlayerName = _inputField.text;
-        GameManager.I.AudioManager.SFXPlay(SFX.ROUND_START);
         GameManager.I.AudioManager.BGMChange(BGM.ROUND);
     }
     public void BuyHealingPition()
