@@ -18,8 +18,6 @@ public enum SFX
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-
     // ===== BGM =====
     [SerializeField] private AudioClip[] _bgmClip;
     private float bgmVolume = 0.5f;
@@ -27,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     // ===== SFX =====
     [SerializeField] private AudioClip[] _sfxClips;
-    private float sfxVolume = 0.5f;//
+    private float sfxVolume = 0.5f;
     private readonly int channels = 16;
     private AudioSource[] sfxPlayers;
     private int sfxChannelIndex;
@@ -38,22 +36,10 @@ public class AudioManager : MonoBehaviour
     private AudioMixerGroup _sfxMixerGroup;
 
 
-    private void Awake()
-    {
-        if (instance == null)
-        { 
-            instance = this; 
-        }
-        else if(instance != this)
-        {
-            Destroy(instance);
-        }
-        DontDestroyOnLoad(this);
-        Init();
-    }
 
     private void Start()
     {
+        Init();
         BGMPlay(BGM.Lobby);
     }
 

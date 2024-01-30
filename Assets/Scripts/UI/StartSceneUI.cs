@@ -36,33 +36,33 @@ public class StartSceneUI : TextDataUI
         _healingPotion.text = HPPotion.ToString();
         _mainUI.SetActive(false);
         _shopUI.SetActive(true);
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void ShopExitButtonClick()
     {
         _mainUI.SetActive(true);
         _shopUI.SetActive(false);
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void ShowAudioSetting()
     {
         _audioUI.SetActive(true);
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void HideAudioSetting()
     {
         _audioUI.SetActive(false);
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("Player");
-        AudioManager.instance.SFXPlay(SFX.ROUND_START);
-        AudioManager.instance.BGMChange(BGM.ROUND);
+        GameManager.I.AudioManager.SFXPlay(SFX.ROUND_START);
+        GameManager.I.AudioManager.BGMChange(BGM.ROUND);
     }
     public void BuyHealingPition()
     {
@@ -73,6 +73,6 @@ public class StartSceneUI : TextDataUI
             _shopGold.text = "Gold" + Gold.ToString();
             _healingPotion.text = HPPotion.ToString();
         }
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 }

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager I;
     public EventManager EventManager { get; private set; }
-    //public AudioManager AudioManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
     
     public float lifeTime = 0f;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-            //AudioManager = gameObject.AddComponent<AudioManager>();
+            AudioManager = gameObject.AddComponent<AudioManager>();
             if (_saveDatas == null)
                 _saveDatas = gameObject.AddComponent<SaveDatas>();
         }
