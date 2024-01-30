@@ -17,6 +17,11 @@ public class Score : TextBaseUI
 
     [SerializeField] private TextMeshProUGUI levelText;
 
+    [SerializeField] private TextMeshProUGUI _resultLevelText;
+    [SerializeField] private TextMeshProUGUI _resultNameText;
+    [SerializeField] private Image _levelImage;
+    private Sprite[] polygons;
+
     private SaveData saveData;
     private SaveRankingData saveRanking;
     private Stage _stage;
@@ -32,6 +37,7 @@ public class Score : TextBaseUI
         _gameManager.EndGame += EndText;
         _restartButton.onClick.AddListener(Restart);
         _homeButton.onClick.AddListener(GoHome);
+        polygons = Resources.LoadAll<Sprite>("Sprites/UI/polygons");
     }
 
     private void UpdateText()
@@ -49,9 +55,12 @@ public class Score : TextBaseUI
         saveData.bestLifeTime = _gameManager.lifeTime > saveData.bestLifeTime ? _gameManager.lifeTime : saveData.bestLifeTime;
         _currentRecordText.text = _gameManager.lifeTime.ToString("F2");
         _resultBestScoreText.text = saveData.bestLifeTime.ToString("F2");
+        _resultLevelText.text = "Level " + (int)_stage._level;
+        _resultNameText.text = _stage._level.ToString().ToUpper();
+        _levelImage.sprite = polygons[(int)_stage._level - 1];
     }
 
-    private void LoadBestScore()
+    private float LoadBestScore()
     {
         bestScore = 0f;
         var name = GameManager.I.PlayerManager.PlayerName;
@@ -60,9 +69,10 @@ public class Score : TextBaseUI
             if (item.name == name)
             {
                 bestScore = item.bestScore;
-                return;
+                break;
             }
         }
+        return bestScore > saveData.bestLifeTime ? bestScore : saveData.bestLifeTime;
     }
 
     private void GoHome()

@@ -3185,6 +3185,9 @@ MonoBehaviour:
   _restartButton: {fileID: 21704325}
   _homeButton: {fileID: 25807646}
   levelText: {fileID: 1529688141}
+  _resultLevelText: {fileID: 226146714}
+  _resultNameText: {fileID: 1375872958}
+  _levelImage: {fileID: 2124544428}
 --- !u!1 &837074126
 GameObject:
   m_ObjectHideFlags: 0

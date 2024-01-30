@@ -4,7 +4,7 @@ public class Stage : MonoBehaviour
 {
     public enum Level
     {
-        point,
+        point = 1,
         line,
         triangle,
         square,
