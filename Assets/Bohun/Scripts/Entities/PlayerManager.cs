@@ -19,10 +19,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Image _characterImage;
 
     [SerializeField]private Color[] _color;
-
+    private static PlayerManager _i;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (_i == null)
+        {
+            _i = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void ChangeCharacterRightButtonClick()
     {

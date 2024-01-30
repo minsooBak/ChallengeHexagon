@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
+        if (_saveDatas._saveData == null)
+            return;
         var temp = _saveDatas._saveData.bestLifeTime;
         _saveDatas._saveData.bestLifeTime = temp > lifeTime ? temp : lifeTime;
         lifeTime = 0;
