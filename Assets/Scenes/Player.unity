@@ -3058,17 +3058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879d9e6b00efdb34ebe1005fa15ac8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData:
-    bestLifeTime: 0
-    gold: 0
-    healingPotion: 0
-  isGameOver: 0
-  InGameUI: {fileID: 2135212763}
-  GameOverUI: {fileID: 499329871}
   lifeTime: 0
-  bestScore: 0
-  level: 0
-  isEvent: 0
 --- !u!4 &878837594
 Transform:
   m_ObjectHideFlags: 0
