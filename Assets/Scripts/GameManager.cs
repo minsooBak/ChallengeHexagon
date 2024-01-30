@@ -27,21 +27,19 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        AudioManager = gameObject.AddComponent<AudioManager>();
+        _saveDatas = gameObject.AddComponent<SaveDatas>();
+        EventManager = gameObject.AddComponent<EventManager>();
+
     }
 
     private void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            AudioManager = gameObject.AddComponent<AudioManager>();
-            if (_saveDatas == null)
-                _saveDatas = gameObject.AddComponent<SaveDatas>();
-        }
-        else if(SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            if (EventManager == null)
-                EventManager = gameObject.AddComponent<EventManager>();
             StartCoroutine(Timer());
         }
     }
