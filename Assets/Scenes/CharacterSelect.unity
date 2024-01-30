@@ -2524,7 +2524,7 @@ MonoBehaviour:
   _hpPotionButton: {fileID: 101855747}
   _shopGold: {fileID: 671376538}
   _healingPotion: {fileID: 430310929}
-  _inputField: {fileID: 0}
+  _inputField: {fileID: 1340012053}
 --- !u!1 &913579336
 GameObject:
   m_ObjectHideFlags: 0

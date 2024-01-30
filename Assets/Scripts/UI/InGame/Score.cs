@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Score : TextBaseUI
 {
@@ -10,11 +12,13 @@ public class Score : TextBaseUI
     [SerializeField] private TextMeshProUGUI _currentRecordText;
     [SerializeField] private TextMeshProUGUI _resultBestScoreText;
 
+    [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _homeButton;
+
     [SerializeField] private TextMeshProUGUI levelText;
 
     private SaveData saveData;
     private SaveRankingData saveRanking;
-    private PlayerManager playerManager;
     private Stage _stage;
     private float bestScore;
 
@@ -23,10 +27,11 @@ public class Score : TextBaseUI
         base.Start();
         saveData = GameManager.I.GetComponent<SaveDatas>()._saveData;
         saveRanking = GameManager.I.GetComponent<SaveDatas>()._saveRanking;
-        
         _stage = GameObject.Find("Stage").GetComponent<Stage>();
         _gameManager.OnGame += UpdateText;
         _gameManager.EndGame += EndText;
+        _restartButton.onClick.AddListener(Restart);
+        _homeButton.onClick.AddListener(GoHome);
     }
 
     private void UpdateText()
@@ -43,19 +48,30 @@ public class Score : TextBaseUI
         Active(resultUI);
         saveData.bestLifeTime = _gameManager.lifeTime > saveData.bestLifeTime ? _gameManager.lifeTime : saveData.bestLifeTime;
         _currentRecordText.text = _gameManager.lifeTime.ToString("F2");
-        _resultBestScoreText.text = "Best Score : " + saveData.bestLifeTime;
+        _resultBestScoreText.text = saveData.bestLifeTime.ToString("F2");
     }
 
     private void LoadBestScore()
     {
         bestScore = 0f;
+        var name = GameManager.I.PlayerManager.PlayerName;
         foreach (var item in saveRanking.ranking)
         {
-            if (item.name == GameManager.I.PlayerManager.PlayerName)
+            if (item.name == name)
             {
                 bestScore = item.bestScore;
                 return;
             }
         }
+    }
+
+    private void GoHome()
+    {
+        SceneManager.LoadScene("CharacterSelect");
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene("Player");
     }
 }

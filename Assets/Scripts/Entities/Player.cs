@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-       _playerManager  = GameObject.Find(_playerManagerString).GetComponent<PlayerManager>();
+        _playerManager = GameManager.I.PlayerManager;
         _renderer = GetComponentInChildren<Renderer>();
     }
     private void Start()

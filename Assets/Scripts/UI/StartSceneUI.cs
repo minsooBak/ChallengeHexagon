@@ -18,7 +18,7 @@ public class StartSceneUI : TextDataUI
 
     [SerializeField] private TextMeshProUGUI _shopGold;
     [SerializeField] private TextMeshProUGUI _healingPotion;
-    [SerializeField] private TextMeshProUGUI _inputField;
+    [SerializeField] private Text _inputField;
 
     protected override void Start()
     {

@@ -1760,7 +1760,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -827832365
+  m_SortingLayerID: -592458585
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!1 &418187618
@@ -2316,7 +2316,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -827832365
+  m_SortingLayerID: -592458585
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &499329875
@@ -3182,6 +3182,8 @@ MonoBehaviour:
   _inGameBestScoreText: {fileID: 418334320}
   _currentRecordText: {fileID: 932715369}
   _resultBestScoreText: {fileID: 225069700}
+  _restartButton: {fileID: 21704325}
+  _homeButton: {fileID: 25807646}
   levelText: {fileID: 1529688141}
 --- !u!1 &837074126
 GameObject:
@@ -4616,7 +4618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -328.00003, y: 0}
+  m_AnchoredPosition: {x: -328, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1318488866
@@ -6573,7 +6575,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -827832365
+  m_SortingLayerID: -592458585
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!1 &2124544426
@@ -6754,7 +6756,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -827832365
+  m_SortingLayerID: -592458585
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!1 &2144855834
