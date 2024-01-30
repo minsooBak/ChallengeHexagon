@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,12 +19,13 @@ public class Player : MonoBehaviour
     private void Awake()
     {
        _playerManager  = GameObject.Find(_playerManagerString).GetComponent<PlayerManager>();
-        _saveDatas =GameObject.Find("SaveData").GetComponent<SaveDatas>();
+        _saveDatas = GameManager.I.gameObject.GetComponent<SaveDatas>();
         _renderer = GetComponentInChildren<Renderer>();
     }
     private void Start()
     {
-        GetCharacterStat(_playerManager.CurrentCharacter);
+        if (_playerManager != null)
+            GetCharacterStat(_playerManager.CurrentCharacter);
         _renderer.material.color = _color;
     }
 
@@ -43,10 +43,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         AudioManager.instance.SFXPlay(SFX.DAMAGED);
-        if (_hp <= 0)
-        {
-            GameManager.I.isGameOver = true;
-        }
     }
 
     public void GetCharacterStat(CharacterType currentCharacter)

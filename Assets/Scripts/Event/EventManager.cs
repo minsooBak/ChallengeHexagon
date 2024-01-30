@@ -19,6 +19,7 @@ public class EventManager : MonoBehaviour
         public WallEvent Type { get; set; }
         public float Data { get; set; }
     }
+
     private const int MAX_SIZE = 30;
     private WallData[] _wallDatas = new WallData[MAX_SIZE];
 
