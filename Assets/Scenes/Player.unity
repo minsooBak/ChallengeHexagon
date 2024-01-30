@@ -1196,7 +1196,7 @@ Canvas:
   m_GameObject: {fileID: 408755259}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   tiltAngle: 1
   rotationSpeed: 1
-  zoomAmount: 25
+  zoomAmount: 10
   isClockwise: 1
 --- !u!4 &456758103
 Transform:
@@ -3145,7 +3145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d062ecfebd4a04dbff2dae1453f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2484019478575432537, guid: a89666ae7d67a4b43a60082e81c92381, type: 3}
+  map: {fileID: 2484019478575432537, guid: 414e93a40b41c0f4cb7b446429886091, type: 3}
   objects: []
   _dealy: 5
   _speed: 5
@@ -4371,7 +4371,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MaxHp-
+  m_Text: MaxHp+
 --- !u!222 &1479642490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5375,7 +5375,7 @@ Canvas:
   m_GameObject: {fileID: 2116912637}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

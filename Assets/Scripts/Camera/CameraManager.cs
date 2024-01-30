@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] [Range(1, 90)] float tiltAngle = 1f;
     [SerializeField] [Range(0f, 10f)] float rotationSpeed = 1.0f;
-    [SerializeField] [Range(10f, 25f)] public float zoomAmount = 10f;
+    [SerializeField] [Range(20f, 35)] public float zoomAmount = 20f;
     [SerializeField] bool isClockwise = true; // true = �ð����, false = �ݽð����
 
 
@@ -43,7 +43,7 @@ public class CameraManager : MonoBehaviour
     {
         tiltAngle = 1f;
         rotationSpeed = 1.0f;
-        zoomAmount = 10f;
+        zoomAmount = 20f;
         zoomDestination = zoomAmount;
         zoomSpeed = 1.0f;
         isClockwise = true;
