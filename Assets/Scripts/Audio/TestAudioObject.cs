@@ -20,7 +20,7 @@ public class TestAudioObject : MonoBehaviour
 
     public void PlayRoundBGM()
     {
-        audioManager.BGMPlay(BGM.ROUND_1);
+        audioManager.BGMPlay(BGM.ROUND);
     }
 
 
