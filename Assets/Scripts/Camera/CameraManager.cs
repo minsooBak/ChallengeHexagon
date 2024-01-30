@@ -54,6 +54,7 @@ public class CameraManager : MonoBehaviour
         UpdateCameraPosition();
         UpdateCameraRotation();
         UpdateZoom();
+        CheckAnimationProbability();
     }
 
     private void UpdateAngles()
