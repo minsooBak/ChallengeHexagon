@@ -41,6 +41,8 @@ public class AudioManager : MonoBehaviour
     {
         Init();
         BGMPlay(BGM.Lobby);
+        GameManager.I.EndGame += ApplyLowPassFilter;
+        GameManager.I.OnGame += ResetAudioEffect;
     }
 
     private void Init()
