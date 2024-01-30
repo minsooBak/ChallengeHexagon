@@ -1,15 +1,13 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
-
-    public SaveData saveData;
-
-    public bool isGameOver = false;
-
     public EventManager EventManager { get; private set; }
+    public SaveData saveData;
+    public bool isGameOver = false;
 
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject GameOverUI;
@@ -20,8 +18,6 @@ public class GameManager : MonoBehaviour
     public float lifeTime = 0f;
     public float bestScore;
     public Level level;
-
-
     public bool isEvent = false;
 
     public enum Level
@@ -71,7 +67,6 @@ public class GameManager : MonoBehaviour
             CalGold(lifeTime);
             _saveData.SaveData();
             GameOverSequence();
-            CheckAnyButtonInput();
         }
     }
 
@@ -158,12 +153,13 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(true);
     }
 
-    private void CheckAnyButtonInput()
+    public void RestartGameButton()
     {
-        if (Input.anyKeyDown)
-        {
-            RestartGame();
-        }
+        RestartGame();
+    }
+    public void GoToMainButton()
+    {
+        GoToMainScene();
     }
 
     private void RestartGame()
@@ -173,6 +169,10 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.ResetAudioEffect();
     }
 
+    private void GoToMainScene()
+    {
+        SceneManager.LoadScene("CharacterSelect");
+    }
 
     private void CalGold(float time)
     {
