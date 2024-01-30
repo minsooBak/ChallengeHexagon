@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AudioMixerController : MonoBehaviour
 {
 
-    [SerializeField] private AudioMixer _audioMixer;
+    private AudioMixer _audioMixer;
 
     [SerializeField] private Slider _masterVolumeSlider;
     [SerializeField] private Slider _bgmVolumeSlider;
