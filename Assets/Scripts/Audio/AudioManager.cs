@@ -41,9 +41,16 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        Init();
+        if (instance == null)
+        { 
+            instance = this; 
+        }
+        else if(instance != this)
+        {
+            Destroy(instance);
+        }
         DontDestroyOnLoad(this);
+        Init();
     }
 
     private void Start()
