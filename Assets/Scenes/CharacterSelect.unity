@@ -2524,6 +2524,7 @@ MonoBehaviour:
   _hpPotionButton: {fileID: 101855747}
   _shopGold: {fileID: 671376538}
   _healingPotion: {fileID: 430310929}
+  _inputField: {fileID: 0}
 --- !u!1 &913579336
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,70 +3634,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398423505}
   m_CullTransparentMesh: 1
---- !u!1 &1441988694
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1441988697}
-  - component: {fileID: 1441988696}
-  - component: {fileID: 1441988695}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1441988695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441988694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66cfcfd0c4466534a87c9bbdb0cb4dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: ba8213b17d6f66347a0398faa519d075, type: 2}
-  _masterVolumeSlider: {fileID: 511971967}
-  _bgmVolumeSlider: {fileID: 1492417260}
-  _sfxVolumeSlider: {fileID: 723141727}
---- !u!114 &1441988696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441988694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63cbe97e436f9894ea50a99519d545db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bgmClip: []
-  _sfxClips: []
-  _audioMixer: {fileID: 24100000, guid: ba8213b17d6f66347a0398faa519d075, type: 2}
---- !u!4 &1441988697
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441988694}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1455841561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,7 +4062,7 @@ RectTransform:
   m_Children:
   - {fileID: 198167918}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4851,7 +4788,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965473612
 GameObject:

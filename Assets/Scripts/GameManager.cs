@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         lifeTime = 0;
         OnGame = null;
         EndGame = null;
+        EndGame += AudioManager.ApplyLowPassFilter;
+        OnGame += AudioManager.ResetAudioEffect;
         Time.timeScale = 1;
         if(scene.buildIndex == 1)
         {
