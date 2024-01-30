@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
+        var temp = _saveDatas._saveData.bestLifeTime;
+        _saveDatas._saveData.bestLifeTime = temp > lifeTime ? temp : lifeTime;
+        lifeTime = 0;
+        OnGame = null;
+        EndGame = null;
         Time.timeScale = 1;
         if(scene.buildIndex == 1)
         {
@@ -59,8 +64,8 @@ public class GameManager : MonoBehaviour
 
     public void CallEndGame()
     {
-        StopAllCoroutines();
         Time.timeScale = 0;
         EndGame?.Invoke();
+        StopAllCoroutines();
     }
 }
