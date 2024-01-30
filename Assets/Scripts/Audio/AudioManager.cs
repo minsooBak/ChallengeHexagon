@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public enum BGM
 {
     Lobby,
-    ROUND_1,
+    ROUND,
 }
 
 public enum SFX
@@ -20,20 +20,19 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [Header("#BGM")]
-    [SerializeField] private AudioClip[] bgmClip;
-    [SerializeField] private float bgmVolume;
+    // ===== BGM =====
+    [SerializeField] private AudioClip[] _bgmClip;
+    private float bgmVolume = 0.5f;
     private AudioSource bgmPlayer;
 
-    [Header("#SFX")]
-    [SerializeField] private AudioClip[] sfxClips;
-    [SerializeField] private float sfxVolume;
-    [SerializeField] private int channels;
+    // ===== SFX =====
+    [SerializeField] private AudioClip[] _sfxClips;
+    private float sfxVolume = 0.5f;//
+    private readonly int channels = 16;
     private AudioSource[] sfxPlayers;
     private int sfxChannelIndex;
 
-
-    [Header("AudioMixer")]
+    // ===== Audio Mixer =====
     [SerializeField] private AudioMixer _audioMixer;
     private AudioMixerGroup _bgmMixerGroup;
     private AudioMixerGroup _sfxMixerGroup;
@@ -60,13 +59,10 @@ public class AudioManager : MonoBehaviour
 
     private void Init()
     {
-        // 배경음("BGM") 믹서 그룹 가져오기
+        // 오디오 믹서 초기화
+        _audioMixer = Resources.Load<AudioMixer>("Audio/AudioMixer/AudioMixer");
         _bgmMixerGroup = _audioMixer.FindMatchingGroups("Master/BGM")[0];
-
-        // 효과음("SFX") 믹서 그룹 가져오기
         _sfxMixerGroup = _audioMixer.FindMatchingGroups("Master/SFX")[0];
-
-        
 
         // 배경음 초기화
         GameObject bgmObject = new GameObject("BgmPlayer");
@@ -77,12 +73,16 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.volume = bgmVolume;
         bgmPlayer.outputAudioMixerGroup = _bgmMixerGroup;
 
+        // 배경음 클립 할당
+        _bgmClip = new AudioClip[2];
+        _bgmClip[(int)BGM.Lobby] = Resources.Load<AudioClip>("Audio/BGM/BGM_Lobby");
+        _bgmClip[(int)BGM.ROUND] = Resources.Load<AudioClip>("Audio/BGM/BGM_Round");
+
         // 효과음 초기화
         sfxPlayers = new AudioSource[channels];
         GameObject sfxObject = new GameObject("SfxPlayer");
         sfxObject.transform.parent = transform;
         sfxChannelIndex = 0;
-        
 
         for (int i = 0; i < sfxPlayers.Length; ++i)
         {
@@ -92,6 +92,13 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[i].volume = sfxVolume;
             sfxPlayers[i].outputAudioMixerGroup = _sfxMixerGroup;
         }
+
+        // 효과음 클립 할당
+        _sfxClips = new AudioClip[4];
+        _sfxClips[(int)SFX.UI_SELECT] = Resources.Load<AudioClip>("Audio/SFX/SFX_UI_Select");
+        _sfxClips[(int)SFX.ROUND_START] = Resources.Load<AudioClip>("Audio/SFX/SFX_Round_Start");
+        _sfxClips[(int)SFX.ROUND_END] = Resources.Load<AudioClip>("Audio/SFX/SFX_Round_End");
+        _sfxClips[(int)SFX.DAMAGED] = Resources.Load<AudioClip>("Audio/SFX/SFX_Damaged");
     }
 
     public void SFXPlay(SFX sfx)
@@ -104,7 +111,7 @@ public class AudioManager : MonoBehaviour
                 continue;
 
             sfxChannelIndex = loop;
-            sfxPlayers[loop].clip = sfxClips[(int)sfx];
+            sfxPlayers[loop].clip = _sfxClips[(int)sfx];
             sfxPlayers[loop].Play();
             break;
         }
@@ -113,7 +120,7 @@ public class AudioManager : MonoBehaviour
 
     public void BGMPlay(BGM bgm)
     {
-        bgmPlayer.clip = bgmClip[(int)bgm];
+        bgmPlayer.clip = _bgmClip[(int)bgm];
         bgmPlayer.Play();
     }
 
@@ -125,7 +132,7 @@ public class AudioManager : MonoBehaviour
     public void BGMChange(BGM bgm)
     {
         bgmPlayer.Stop();
-        bgmPlayer.clip = bgmClip[(int)bgm];
+        bgmPlayer.clip = _bgmClip[(int)bgm];
         bgmPlayer.Play();
     }
 
@@ -138,9 +145,7 @@ public class AudioManager : MonoBehaviour
     public void ResetAudioEffect()
     {
         if (_audioMixer != null)
-            _audioMixer.FindSnapshot("Default2").TransitionTo(0f);
-        else
-            Debug.Log("스냅샷 변경 불가");
+            _audioMixer.FindSnapshot("Default").TransitionTo(0f);
     }
 
 

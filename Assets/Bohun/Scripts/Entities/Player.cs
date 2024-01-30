@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
         AudioManager.instance.SFXPlay(SFX.DAMAGED);
         if (_hp <= 0)
         {
+            AudioManager.instance.SFXPlay(SFX.ROUND_END);
+            AudioManager.instance.ApplyLowPassFilter();
             GameManager.I.isGameOver = true;
         }
     }
