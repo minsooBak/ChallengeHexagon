@@ -13,6 +13,8 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private int _defaultDamage = 5;
     private List<int> ints = new List<int>();
 
+    public bool GetEvent { get { return ints.Count > 0; } }
+
     private void Awake()
     {
         Instantiate(map, transform);
@@ -100,7 +102,6 @@ public class ObjectManager : MonoBehaviour
     private void TakeOut()
     {
         ints.Clear();
-        GameManager.I.isEvent = false;
         foreach (Object obj in objects)
         {
             obj.TakeOutWall(_speed, _defaultDamage);

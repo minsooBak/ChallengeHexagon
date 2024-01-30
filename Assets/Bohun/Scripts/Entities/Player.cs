@@ -44,10 +44,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         AudioManager.instance.SFXPlay(SFX.DAMAGED);
-        if (_hp <= 0)
-        {
-            GameManager.I.isGameOver = true;
-        }
     }
 
     public void GetCharacterStat(CharacterType currentCharacter)

@@ -44,19 +44,16 @@ public class CameraManager : MonoBehaviour
         _zoomSpeed = 1.0f;
         _isClockwise = true;
         _isAnimationEnd = true;
+        GameManager.I.OnGame += CameraMove;
     }
 
-    private void Update()
+    private void CameraMove()
     {
-        if (!GameManager.I.isGameOver)
-        {
-            UpdateAngles();
-            UpdatePositions();
-            UpdateCameraPosition();
-            UpdateCameraRotation();
-            UpdateZoom();
-            CheckAnimationProbability();
-        }
+        UpdateAngles();
+        UpdatePositions();
+        UpdateCameraPosition();
+        UpdateCameraRotation();
+        UpdateZoom();
     }
 
     private void UpdateAngles()
