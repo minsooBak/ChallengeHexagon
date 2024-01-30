@@ -13,7 +13,7 @@ public class RankingManager : MonoBehaviour
 
     private void Awake()
     {
-        _saveData = GameObject.Find("SaveData").GetComponent<SaveDatas>();
+        _saveData = GameManager.I.GetComponent<SaveDatas>();
         _transform = _UI.GetComponent<Transform>();
     }
 
