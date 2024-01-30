@@ -28,28 +28,32 @@ public class StartSceneUIController : MonoBehaviour
         _healingPotion.text = _saveDatas._saveData.healingPotion.ToString();
         _mainUI.SetActive(false);
         _shopUI.SetActive(true);
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }    
     public void ShopExitButtonClick()
     {
         _mainUI.SetActive(true);
         _shopUI.SetActive(false);
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
 
     public void ShowAudioSetting()
     {
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
         _audioUI.SetActive(true);
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
 
     public void HideAudioSetting()
     {
-        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
         _audioUI.SetActive(false);
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("Player");
+        AudioManager.instance.SFXPlay(SFX.ROUND_START);
+        AudioManager.instance.BGMChange(BGM.ROUND_1);
     }
     public void BuyHealingPition()
     {
@@ -61,5 +65,6 @@ public class StartSceneUIController : MonoBehaviour
             _healingPotion.text = _saveDatas._saveData.healingPotion.ToString();
             _saveDatas.SaveData();
         }
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
 }

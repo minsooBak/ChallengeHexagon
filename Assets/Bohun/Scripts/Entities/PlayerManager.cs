@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         int nextIndex = (currentIndex + 1) % characterValues.Length;
         _currentChracter = characterValues[nextIndex];
         _characterImage.color = _color[(int)_currentChracter];
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
     public void ChangeCharacterLeftButtonClick()
     {
@@ -40,6 +41,7 @@ public class PlayerManager : MonoBehaviour
         }
         _characterImage.color = _color[nextIndex];
         _currentChracter = characterValues[nextIndex];
+        AudioManager.instance.SFXPlay(SFX.UI_SELECT);
     }
 
 }
