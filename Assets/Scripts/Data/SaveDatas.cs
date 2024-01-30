@@ -55,6 +55,12 @@ public class SaveDatas : MonoBehaviour
     public void LoadData() 
     {
         string path = Path.Combine(Application.dataPath, "SaveData.json");
+        if (!File.Exists(path))
+        {
+            Debug.Log("No File");
+            _saveData = new SaveData();
+            return;
+        }
         string jsonData = File.ReadAllText(path);
         _saveData = JsonUtility.FromJson<SaveData>(jsonData);
     }

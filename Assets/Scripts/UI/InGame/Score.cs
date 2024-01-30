@@ -26,6 +26,7 @@ public class Score : TextBaseUI
     private SaveRankingData saveRanking;
     private Stage _stage;
     private float bestScore;
+    private float finalScore;
 
     protected override void Start()
     {
@@ -38,29 +39,32 @@ public class Score : TextBaseUI
         _restartButton.onClick.AddListener(Restart);
         _homeButton.onClick.AddListener(GoHome);
         polygons = Resources.LoadAll<Sprite>("Sprites/UI/polygons");
+        LoadBestScore();
     }
 
     private void UpdateText()
     {
+
         levelText.text = $"Level " + (int)_stage._level + " | " + _stage._level.ToString().ToUpper();
         saveData.bestLifeTime = _gameManager.lifeTime > saveData.bestLifeTime ? _gameManager.lifeTime : saveData.bestLifeTime;
         _inGameScoreText.text = _gameManager.lifeTime.ToString("F2");
-        LoadBestScore();
-        _inGameBestScoreText.text = "Best Score : " + bestScore.ToString("F2");
+
+        finalScore = _gameManager.lifeTime < bestScore ? bestScore : _gameManager.lifeTime;
+        _inGameBestScoreText.text = "Best Score : " + finalScore.ToString("F2");
     }
 
     private void EndText()
     {
         Active(resultUI);
-        saveData.bestLifeTime = _gameManager.lifeTime > saveData.bestLifeTime ? _gameManager.lifeTime : saveData.bestLifeTime;
         _currentRecordText.text = _gameManager.lifeTime.ToString("F2");
-        _resultBestScoreText.text = saveData.bestLifeTime.ToString("F2");
+        _resultBestScoreText.text = finalScore.ToString("F2");
         _resultLevelText.text = "Level " + (int)_stage._level;
         _resultNameText.text = _stage._level.ToString().ToUpper();
         _levelImage.sprite = polygons[(int)_stage._level - 1];
+        SaveCurrentOnRanking();
     }
 
-    private float LoadBestScore()
+    private void LoadBestScore()
     {
         bestScore = 0f;
         var name = GameManager.I.PlayerManager.PlayerName;
@@ -72,7 +76,43 @@ public class Score : TextBaseUI
                 break;
             }
         }
-        return bestScore > saveData.bestLifeTime ? bestScore : saveData.bestLifeTime;
+        return;
+    }
+
+    private void SaveCurrentOnRanking()
+    {
+        string name = GameManager.I.PlayerManager.PlayerName;
+        float best = finalScore;
+        RankingData data = new RankingData();
+        data.name = name;
+        data.bestScore = best;
+
+        bool isExist = false;
+        if (saveRanking.ranking != null)
+        {
+
+            foreach (var item in saveRanking.ranking)
+            {
+                if (item.name == name)
+                {
+                    if (item.bestScore < best)
+                    {
+                        saveRanking.ranking.Remove(item);
+                        saveRanking.ranking.Add(data);
+                    }
+                    isExist = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isExist)
+        {
+            saveRanking.ranking.Add(data);
+        }
+
+        saveRanking.ranking.Sort((x, y) => y.bestScore.CompareTo(x.bestScore));
+        GameManager.I.GetComponent<SaveDatas>().SaveRankingData();
     }
 
     private void GoHome()
