@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -70,7 +71,6 @@ public class GameManager : MonoBehaviour
             CalGold(lifeTime);
             _saveData.SaveData();
             GameOverSequence();
-            CheckAnyButtonInput();
         }
     }
 
@@ -157,12 +157,13 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(true);
     }
 
-    private void CheckAnyButtonInput()
+    public void RestartGameButton()
     {
-        if (Input.anyKeyDown)
-        {
-            RestartGame();
-        }
+        RestartGame();
+    }
+    public void GoToMainButton()
+    {
+        GoToMainScene();
     }
 
     private void RestartGame()
@@ -170,6 +171,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Player");
     }
 
+    private void GoToMainScene()
+    {
+        SceneManager.LoadScene("CharacterSelect");
+    }
 
     private void CalGold(float time)
     {
