@@ -7,18 +7,21 @@ using UnityEngine.UI;
 public class StartSceneUIController : MonoBehaviour
 {
     private SaveDatas _saveDatas;
+    private PlayerManager _playerManager;
+
     [SerializeField] private GameObject _mainUI;
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private GameObject _audioUI;
 
     [SerializeField] private Text _shopGold;
     [SerializeField] private Text _healingPotion;
+    [SerializeField] private Text _playerName;
 
    
     private void Awake()
     {
         _saveDatas = GameObject.Find("SaveData").GetComponent<SaveDatas>();
-        
+        _playerManager = GameObject.Find("PlayerData").GetComponent<PlayerManager>();
     }
 
 
@@ -50,6 +53,7 @@ public class StartSceneUIController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Player");
+        _playerManager.PlayerName = _playerName.text;
     }
     public void BuyHealingPition()
     {

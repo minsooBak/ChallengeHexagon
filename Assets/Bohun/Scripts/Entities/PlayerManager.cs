@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField]private CharacterType _currentChracter = CharacterType.normal;
     public CharacterType CurrentCharacter {  get { return _currentChracter; } }
+
+    public string PlayerName { get; set; }
+
     [SerializeField] private Image _characterImage;
 
     [SerializeField]private Color[] _color;

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject GameOverUI;
 
+    private PlayerManager _playerManager;
     private ObjectManager _objectManager;
     private SaveDatas _saveData;
 
@@ -21,8 +25,8 @@ public class GameManager : MonoBehaviour
     public float bestScore;
     public Level level;
 
-
     public bool isEvent = false;
+    private bool isOnceEnd = false;
 
     public enum Level
     {
@@ -44,10 +48,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _playerManager = GameObject.Find("PlayerData").GetComponent<PlayerManager>();
         _objectManager = GameObject.Find("ObjectManager").GetComponent<ObjectManager>();
         _saveData = GameObject.Find("SaveData").GetComponent<SaveDatas>();
         EventManager = gameObject.AddComponent<EventManager>();
-        bestScore = _saveData._saveData.bestLifeTime;
+        LoadBestScore();
         Application.targetFrameRate = 60;
         Time.timeScale = 1;
     }
@@ -65,11 +70,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0;
-            _saveData._saveData.bestLifeTime = bestScore;
-            CalGold(lifeTime);
-            _saveData.SaveData();
-            GameOverSequence();
+            if (!isOnceEnd)
+            {
+                Time.timeScale = 0;
+                _saveData._saveData.bestLifeTime = bestScore;
+                CalGold(lifeTime);
+                _saveData.SaveData();
+                SaveCurrentOnRanking();
+                _saveData.SaveRankingData();
+                GameOverSequence();
+                isOnceEnd = true;
+            }
             CheckAnyButtonInput();
         }
     }
@@ -151,6 +162,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void LoadBestScore()
+    {
+        bestScore = 0f;
+        foreach (var item in _saveData._saveRanking.ranking)
+        {
+            if (item.name == _playerManager.PlayerName)
+            {
+                bestScore = item.bestScore;
+                return;
+            }
+        }   
+    }
+
     private void GameOverSequence()
     {
         InGameUI.SetActive(false);
@@ -168,12 +192,49 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         SceneManager.LoadScene("Player");
+        isOnceEnd = false;
     }
 
 
     private void CalGold(float time)
     {
         _saveData._saveData.gold += (int)time / 10;
+    }
+
+    private void SaveCurrentOnRanking()
+    {
+        string name = _playerManager.PlayerName;
+        float best = bestScore;
+        RankingData data = new RankingData();
+        data.name = name;
+        data.bestScore = best;
+
+        bool isExist = false;
+        if (_saveData._saveRanking.ranking != null)
+        {
+
+            foreach (var item in _saveData._saveRanking.ranking)
+            {
+                if (item.name == name)
+                {
+                    if (item.bestScore < best)
+                    {
+                        _saveData._saveRanking.ranking.Remove(item);
+                        _saveData._saveRanking.ranking.Add(data);
+                    }
+                    isExist = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isExist)
+        {
+            _saveData._saveRanking.ranking.Add(data);
+        }
+
+        _saveData._saveRanking.ranking.Sort((x, y) => y.bestScore.CompareTo(x.bestScore));
+
     }
 
 
