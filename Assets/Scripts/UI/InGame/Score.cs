@@ -18,8 +18,8 @@ public class Score : TextBaseUI
     protected override void Start()
     {
         base.Start();
-        saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-        _stage = GameManager.I.gameObject.GetComponent<Stage>();
+        saveData = GameManager.I.GetComponent<SaveDatas>()._saveData;
+        _stage = GameObject.Find("Stage").GetComponent<Stage>();
         _gameManager.OnGame += UpdateText;
         _gameManager.EndGame += EndText;
     }

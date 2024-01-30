@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
+        Time.timeScale = 1;
         if(scene.buildIndex == 1)
         {
             StartCoroutine(Timer());
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     public void CallEndGame()
     {
         StopAllCoroutines();
+        Time.timeScale = 0;
         EndGame?.Invoke();
     }
 }
