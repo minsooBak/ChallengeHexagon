@@ -75,7 +75,7 @@ public class EventMain : MonoBehaviour
             _player.HP += number;
             if(_player.HP == 0)
             {
-                GameManager.I.isGameOver = true;
+                GameManager.I.CallEndGame();
             }
         }
     }

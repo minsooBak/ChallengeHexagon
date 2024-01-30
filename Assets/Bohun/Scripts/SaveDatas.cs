@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class SaveDatas : MonoBehaviour
 {
-   public SaveData _saveData;
-
+    public SaveData _saveData;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         LoadData();
     }
 
@@ -27,6 +23,11 @@ public class SaveDatas : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "SaveData.json");
         string jsonData = File.ReadAllText(path);
         _saveData = JsonUtility.FromJson<SaveData>(jsonData);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveData();
     }
 }
 

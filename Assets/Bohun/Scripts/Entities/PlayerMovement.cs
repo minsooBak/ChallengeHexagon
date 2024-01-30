@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController _controller;
+    private CharacterBaseController _controller;
     private Rigidbody2D _rigid;
     private Vector2 dirVec = Vector2.zero;
     private Vector3 rotateVec = Vector3.zero;
@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _player = GetComponent<Player>();
-        _controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterBaseController>();
         _rigid = GetComponent<Rigidbody2D>();
     }
 

@@ -8,12 +8,13 @@ public class LightEvent : MonoBehaviour
     private float _time = 5f;
     private Color _curColor = Color.white;
 
-    private void Awake()
+    private void Start()
     {
         _light = GetComponent<Light>();
+        GameManager.I.OnGame += ColorChange;
     }
 
-    private void FixedUpdate()
+    private void ColorChange()
     {
         _time += Time.deltaTime;
         if(_time >= _dealy )
