@@ -4,8 +4,8 @@ public class TextDataUI : MonoBehaviour
 {
     private SaveData _saveData;
 
-    public int Gold { get; set; }
-    public int HPPotion { get; set; }
+    public int Gold { get { return _saveData.gold; } set { _saveData.gold += value; } }
+    public int HPPotion { get { return _saveData.healingPotion; } set { _saveData.healingPotion += value; } }
 
     protected virtual void Start()
     {

@@ -8,7 +8,7 @@ public class SaveDatas : MonoBehaviour
     public SaveData _saveData;
     public SaveRankingData _saveRanking;
 
-    private void Start()
+    private void Awake()
     {
         LoadData();
         LoadRankingData();
