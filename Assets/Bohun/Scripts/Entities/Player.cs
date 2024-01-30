@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        GetCharacterStat(_playerManager.CurrentCharacter);
+        if (_playerManager != null)
+            GetCharacterStat(_playerManager.CurrentCharacter);
         _renderer.material.color = _color;
     }
 
