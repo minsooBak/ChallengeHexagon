@@ -62,7 +62,7 @@ public class StartSceneUI : TextDataUI
     {
         SceneManager.LoadScene("Player");
         AudioManager.instance.SFXPlay(SFX.ROUND_START);
-        AudioManager.instance.BGMChange(BGM.ROUND_1);
+        AudioManager.instance.BGMChange(BGM.ROUND);
     }
     public void BuyHealingPition()
     {
