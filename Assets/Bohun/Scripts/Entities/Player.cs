@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Color _color = Color.white;
 
     private PlayerManager _playerManager;
+    private SaveDatas _saveDatas;
     private Renderer _renderer;
     private string _playerManagerString = "PlayerData";
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
        _playerManager  = GameObject.Find(_playerManagerString).GetComponent<PlayerManager>();
+        _saveDatas =GameObject.Find("SaveData").GetComponent<SaveDatas>();
         _renderer = GetComponentInChildren<Renderer>();
     }
     private void Start()
@@ -27,6 +29,17 @@ public class Player : MonoBehaviour
         _renderer.material.color = _color;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(_saveDatas._saveData.healingPotion >= 1)
+            {
+                _saveDatas._saveData.healingPotion--;
+                HP += 10;
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         AudioManager.instance.SFXPlay(SFX.DAMAGED);
