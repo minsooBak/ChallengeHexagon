@@ -9,7 +9,7 @@ public class TextDataUI : MonoBehaviour
 
     protected virtual void Start()
     {
-        _saveData = GameObject.Find("SaveData").GetComponent<SaveDatas>()._saveData;
+        _saveData = GameManager.I.GetComponent<SaveDatas>()._saveData;
     }
 
     protected float GetBestLifeTime()

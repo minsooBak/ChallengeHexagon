@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         AudioManager = gameObject.AddComponent<AudioManager>();
         _saveDatas = gameObject.AddComponent<SaveDatas>();
         EventManager = gameObject.AddComponent<EventManager>();
-
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
