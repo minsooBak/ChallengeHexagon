@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -34,8 +35,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("AudioMixer")]
     [SerializeField] private AudioMixer _audioMixer;
+    private AudioMixerGroup _bgmMixerGroup;
+    private AudioMixerGroup _sfxMixerGroup;
 
-    
 
     private void Awake()
     {
@@ -51,11 +53,13 @@ public class AudioManager : MonoBehaviour
 
     private void Init()
     {
-        // 배경음("SFX") 믹서 그룹 가져오기
-        AudioMixerGroup bgmMixerGroup = _audioMixer.FindMatchingGroups("Master/BGM")[0];
+        // 배경음("BGM") 믹서 그룹 가져오기
+        _bgmMixerGroup = _audioMixer.FindMatchingGroups("Master/BGM")[0];
 
         // 효과음("SFX") 믹서 그룹 가져오기
-        AudioMixerGroup sfxMixerGroup = _audioMixer.FindMatchingGroups("Master/SFX")[0];
+        _sfxMixerGroup = _audioMixer.FindMatchingGroups("Master/SFX")[0];
+
+        
 
         // 배경음 초기화
         GameObject bgmObject = new GameObject("BgmPlayer");
@@ -64,7 +68,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.playOnAwake = false;
         bgmPlayer.loop = true;
         bgmPlayer.volume = bgmVolume;
-        bgmPlayer.outputAudioMixerGroup = bgmMixerGroup;
+        bgmPlayer.outputAudioMixerGroup = _bgmMixerGroup;
 
         // 효과음 초기화
         sfxPlayers = new AudioSource[channels];
@@ -79,7 +83,7 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].loop = false;
             sfxPlayers[i].volume = sfxVolume;
-            sfxPlayers[i].outputAudioMixerGroup = sfxMixerGroup;
+            sfxPlayers[i].outputAudioMixerGroup = _sfxMixerGroup;
         }
     }
 
@@ -120,7 +124,14 @@ public class AudioManager : MonoBehaviour
 
     public void ApplyLowPassFilter()
     {
-        //TODO
+        if (_audioMixer != null)
+            _audioMixer.FindSnapshot("BGM_LowpassFilter").TransitionTo(0.3f);
+    }
+
+    public void ResetAudioEffect()
+    {
+        if (_audioMixer != null)
+            _audioMixer.FindSnapshot("Default").TransitionTo(0f);
     }
 
 
