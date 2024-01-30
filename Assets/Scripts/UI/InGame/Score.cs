@@ -19,7 +19,7 @@ public class Score : TextBaseUI
     {
         base.Start();
         saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
-        _stage = _gameManager.gameObject.GetComponent<Stage>();
+        _stage = GameManager.I.gameObject.GetComponent<Stage>();
         _gameManager.OnGame += UpdateText;
         _gameManager.EndGame += EndText;
     }
