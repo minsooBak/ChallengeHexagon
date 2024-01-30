@@ -64,6 +64,11 @@ public class SaveDatas : MonoBehaviour
         string jsonData = File.ReadAllText(path);
         _saveData = JsonUtility.FromJson<SaveData>(jsonData);
     }
+
+    private void OnApplicationQuit()
+    {
+        SaveData();
+    }
 }
 
 [System.Serializable]
