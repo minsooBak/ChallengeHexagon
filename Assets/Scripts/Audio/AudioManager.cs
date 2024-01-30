@@ -132,13 +132,15 @@ public class AudioManager : MonoBehaviour
     public void ApplyLowPassFilter()
     {
         if (_audioMixer != null)
-            _audioMixer.FindSnapshot("BGM_LowpassFilter").TransitionTo(0.3f);
+            _audioMixer.FindSnapshot("BGM_LowpassFilter").TransitionTo(0);
     }
 
     public void ResetAudioEffect()
     {
         if (_audioMixer != null)
-            _audioMixer.FindSnapshot("Default").TransitionTo(0f);
+            _audioMixer.FindSnapshot("Default2").TransitionTo(0f);
+        else
+            Debug.Log("½º³À¼¦ º¯°æ ºÒ°¡");
     }
 
 

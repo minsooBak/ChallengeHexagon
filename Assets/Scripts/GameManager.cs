@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.ApplyLowPassFilter();
             Time.timeScale = 0;
             _saveData._saveData.bestLifeTime = bestScore;
             CalGold(lifeTime);
@@ -168,6 +169,8 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         SceneManager.LoadScene("Player");
+        //Audio TODO
+        AudioManager.instance.ResetAudioEffect();
     }
 
 
