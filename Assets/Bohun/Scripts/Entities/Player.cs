@@ -19,11 +19,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
        _playerManager  = GameObject.Find(_playerManagerString).GetComponent<PlayerManager>();
-        _saveDatas = GameManager.I.gameObject.GetComponent<SaveDatas>();
         _renderer = GetComponentInChildren<Renderer>();
     }
     private void Start()
     {
+        _saveDatas = GameManager.I.GetComponent<SaveDatas>();
         if (_playerManager != null)
             GetCharacterStat(_playerManager.CurrentCharacter);
         _renderer.material.color = _color;

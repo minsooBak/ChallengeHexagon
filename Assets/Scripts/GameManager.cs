@@ -48,9 +48,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Timer()
     {
-        lifeTime += Time.deltaTime;
-        OnGame?.Invoke();
-        yield return fixedUpdate;
+        while(true)
+        {
+            lifeTime += Time.deltaTime;
+            OnGame?.Invoke();
+            yield return fixedUpdate;
+        }
     }
 
     public void CallEndGame()
