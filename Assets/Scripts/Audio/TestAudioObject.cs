@@ -10,7 +10,7 @@ public class TestAudioObject : MonoBehaviour
 
     void Start()
     {
-        audioManager = AudioManager.instance;
+        audioManager = GameManager.I.AudioManager;
     }
 
     public void PlayLobbyBGM()
