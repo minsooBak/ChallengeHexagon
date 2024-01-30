@@ -17,9 +17,15 @@ public class PlayerManager : MonoBehaviour
     public string PlayerName { get; set; }
 
     [SerializeField] private Image _characterImage;
-
     [SerializeField]private Color[] _color;
-    
+
+    public void Init()
+    {
+        _characterImage = GameObject.Find("Image").GetComponent<Image>();
+        GameObject.Find("ChangeCharacterRightButton").GetComponent<Button>().onClick.AddListener(ChangeCharacterRightButtonClick);
+        GameObject.Find("ChangeCharacterLeftButton").GetComponent<Button>().onClick.AddListener(ChangeCharacterLeftButtonClick);
+    }
+
     public void ChangeCharacterRightButtonClick()
     {
         CharacterType[] characterValues = (CharacterType[])Enum.GetValues(typeof(CharacterType));

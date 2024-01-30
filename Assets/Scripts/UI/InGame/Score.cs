@@ -62,6 +62,7 @@ public class Score : TextBaseUI
         _resultNameText.text = _stage._level.ToString().ToUpper();
         _levelImage.sprite = polygons[(int)_stage._level - 1];
         SaveCurrentOnRanking();
+        saveData.gold += (int)GameManager.I.lifeTime / 10;
     }
 
     private void LoadBestScore()

@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
         if(scene.buildIndex == 1)
         {
             StartCoroutine(Timer());
+        }else if(scene.buildIndex == 0)
+        {
+            PlayerManager.Init();
         }
     }
 
