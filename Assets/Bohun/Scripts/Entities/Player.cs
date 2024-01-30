@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,7 +19,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
        _playerManager  = GameObject.Find(_playerManagerString).GetComponent<PlayerManager>();
-        _saveDatas =GameObject.Find("SaveData").GetComponent<SaveDatas>();
+        _saveDatas = GameManager.I.gameObject.GetComponent<SaveDatas>();
         _renderer = GetComponentInChildren<Renderer>();
     }
     private void Start()

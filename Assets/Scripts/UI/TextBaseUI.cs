@@ -11,7 +11,6 @@ public class TextBaseUI : MonoBehaviour
     }
 
     protected void UpdateText(TextMeshProUGUI text, string msg)
-
     {
         text.text = msg;
     }
