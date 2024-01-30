@@ -1,40 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class HpHexagon : MonoBehaviour
 {
-    [SerializeField] private GameObject hexagon;
+    [SerializeField] private GameObject[] hexagon;
 
-    [SerializeField] [Range(0, 100)] private float hp;
-
-    private SpriteRenderer _sprite;
 
     private Vector3 minScale;
     private Vector3 originScale;
+    private Vector3 targetPosX = Vector3.zero;
+    private Vector3 targetPosY = Vector3.zero;
     private float chunk;
     private float timer;
-    private float zoomSpeed;
+    [SerializeField]private float zoomSpeed;
     private int bpm;
     private int count;
 
+    private Player _player;
+    
 
 
-    private void Awake()
+    private void Start()
     {
-        _sprite = hexagon.GetComponent<SpriteRenderer>();
-        hp = 100;
+        originScale = hexagon[0].transform.localScale;
+        _player = GameObject.Find("Player").GetComponent<Player>();
         chunk = 0f;
         bpm = 110;
         timer = 0f;
         count = 1;
-        zoomSpeed = 1.0f;
-    }
-
-    private void Start()
-    {
-
+        zoomSpeed = 100.0f;
     }
 
     private void Update()
@@ -45,7 +38,13 @@ public class HpHexagon : MonoBehaviour
 
     private void SetScale()
     {
-        originScale = new Vector3(hp / 100 * 0.9f, hp / 100 * 0.9f, 1);
+        var temp = originScale;
+        originScale = new Vector3(_player.HP / 2000f, _player.HP / 2000f, 1);
+        if(temp != originScale)
+        {
+            targetPosX = Vector3.zero;
+            targetPosY = Vector3.zero;
+        }
         minScale = originScale * 0.9f;
     }
 
@@ -64,12 +63,28 @@ public class HpHexagon : MonoBehaviour
 
     private void MakeScaleMin()
     {
-        _sprite.transform.localScale = Vector3.Lerp(originScale, minScale, Time.deltaTime * zoomSpeed);
+        foreach(var item in hexagon)
+        {
+            var temp = item.transform.localScale;
+            item.transform.localScale = Vector3.MoveTowards(originScale, minScale, Time.deltaTime * zoomSpeed);
+            temp -= item.transform.localScale;
+            if (targetPosX == Vector3.zero)
+                targetPosX = item.transform.localPosition + (temp * 0.58f);
+            item.transform.localPosition = Vector3.MoveTowards(item.transform.localPosition, new Vector3(0, targetPosX.y, 0), Time.deltaTime * zoomSpeed);
+        }
     }
 
     private void MakeScaleOrigin()
     {
-        _sprite.transform.localScale = Vector3.Lerp(minScale, originScale, Time.deltaTime * zoomSpeed);
+        foreach (var item in hexagon)
+        {
+            var temp = item.transform.localScale;
+            item.transform.localScale = Vector3.MoveTowards(minScale, originScale, Time.deltaTime * zoomSpeed);
+            temp -= item.transform.localScale;
+            if (targetPosY == Vector3.zero)
+                targetPosY = item.transform.localPosition + (temp * 0.58f);
+            item.transform.localPosition = Vector3.MoveTowards(item.transform.localPosition, new Vector3(0, targetPosY.y, 0), Time.deltaTime * zoomSpeed);
+        }
     }
 
 }
