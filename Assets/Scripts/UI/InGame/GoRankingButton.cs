@@ -9,6 +9,7 @@ public class GoRankingButton : MonoBehaviour
 
     public void GoRankingScene()
     {
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
         SceneManager.LoadScene("RankingScene");
     }
 }

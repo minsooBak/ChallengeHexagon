@@ -9,6 +9,7 @@ public class GoMenuButton : MonoBehaviour
 
     public void GoMenuScene()
     {
+        GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
         SceneManager.LoadScene("CharacterSelect");
     }
 }
