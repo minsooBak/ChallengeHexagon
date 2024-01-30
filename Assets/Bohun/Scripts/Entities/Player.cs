@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     public float Speed { get { return _speed; } set { _speed = value; } }
     public int HP { get { return _hp; } set { _hp = Mathf.Clamp(value, 0, _maxHP); } }
-    public int MaxHP { get { return _maxHP; } set { _maxHP = value; } }
+    public int MaxHP { get { return _maxHP; } set { _maxHP = Mathf.Clamp(value, 0, 130); } }
 
     private void Awake()
     {
@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
         {
             case CharacterType.normal:
                 _speed = 120f;
-                _hp = 100;
-                _maxHP = 100;
+                _hp = 75;
+                _maxHP = 75;
                 _color = Color.white;
                 break;
             case CharacterType.speed:
@@ -63,8 +63,8 @@ public class Player : MonoBehaviour
                 break;
             case CharacterType.health:
                 _speed = 90f;
-                _hp = 200;
-                _maxHP = 200;
+                _hp = 100;
+                _maxHP = 100;
                 _color = Color.red;   
                 break;
         }
