@@ -23,22 +23,23 @@ public class GameManager : MonoBehaviour
         if (I == null)
         {
             I = this;
+            DontDestroyOnLoad(this);
+            AudioManager = gameObject.AddComponent<AudioManager>();
+            _saveDatas = gameObject.AddComponent<SaveDatas>();
+            EventManager = gameObject.AddComponent<EventManager>();
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        AudioManager = gameObject.AddComponent<AudioManager>();
-        _saveDatas = gameObject.AddComponent<SaveDatas>();
-        EventManager = gameObject.AddComponent<EventManager>();
-        DontDestroyOnLoad(this);
+        SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
-    private void Start()
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+        if(scene.buildIndex == 1)
         {
             StartCoroutine(Timer());
         }
