@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
         Init();
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
