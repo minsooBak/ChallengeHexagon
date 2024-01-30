@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
-
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
         if (_saveDatas._saveData == null)
