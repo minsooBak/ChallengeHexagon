@@ -29,21 +29,18 @@ public class Wall : MonoBehaviour
 
     void Update()
     {
-        if (!_gameManager.isGameOver)
+        CheckUpdate();
+        if (transform.localPosition.y >= 0.55f)
         {
-            CheckUpdate();
-            if (transform.localPosition.y >= 0.55f)
+            if (_dataIndex != -1)
             {
-                if (_dataIndex != -1)
-                {
-                    GameManager.I.EventManager.DeleteData(_dataIndex);
-                    _dataIndex = -1;
-                    _renderer.material = _defultMaterial;
-                }
-                gameObject.SetActive(false);
+                GameManager.I.EventManager.DeleteData(_dataIndex);
+                _dataIndex = -1;
+                _renderer.material = _defultMaterial;
             }
-            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, _speed * Time.deltaTime);
+            gameObject.SetActive(false);
         }
+        transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, _speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

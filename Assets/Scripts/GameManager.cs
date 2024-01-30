@@ -4,12 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
-
-    public SaveData saveData;
-
-    public bool isGameOver = false;
-
     public EventManager EventManager { get; private set; }
+    public SaveData saveData;
+    public bool isGameOver = false;
 
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject GameOverUI;
@@ -20,8 +17,6 @@ public class GameManager : MonoBehaviour
     public float lifeTime = 0f;
     public float bestScore;
     public Level level;
-
-
     public bool isEvent = false;
 
     public enum Level

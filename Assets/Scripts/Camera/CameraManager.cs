@@ -2,52 +2,48 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Camera mainCamera;
-    public static CameraManager I;
-    
-    Transform _transform;
-
+    [SerializeField] private Camera mainCamera;
+    private Transform _transform;
 
     [Header("Camera Settings")]
-    [SerializeField] [Range(1, 90)] float tiltAngle = 1f;
-    [SerializeField] [Range(0f, 10f)] float rotationSpeed = 1.0f;
-    [SerializeField] [Range(20f, 35)] public float zoomAmount = 20f;
-    [SerializeField] bool isClockwise = true; // true = �ð����, false = �ݽð����
+    [SerializeField] [Range(1, 90)] private float _tiltAngle = 1f;
+    [SerializeField] [Range(0f, 10f)] private float _rotationSpeed = 1.0f;
+    [SerializeField] [Range(20f, 35)] private float _zoomAmount = 20f;
+    [SerializeField] private bool _isClockwise = true; // true = �ð����, false = �ݽð����
 
 
-    float rotationAngle = 0f;
-    float zoomDestination = 0f;
-    float zoomSpeed = 0f;
+    private float _rotationAngle = 0f;
+    private float _zoomDestination = 0f;
+    private float _zoomSpeed = 0f;
 
-    Vector3 worldOrigin = Vector3.zero;
-    Vector3 headDirecton =Vector3.zero;
+    private Vector3 _worldOrigin = Vector3.zero;
+    private Vector3 _headDirecton =Vector3.zero;
 
-    float cameraX = 0f;
-    float cameraY = 0f;
-    float cameraZ = 0f;
+    private float _cameraX = 0f;
+    private float _cameraY = 0f;
+    private float _cameraZ = 0f;
 
-    bool isAnimationEnd;
+    private bool _isAnimationEnd;
 
-    float Temp { get; set;}
+    private float Temp { get; set;}
 
     private void Awake()
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
         _transform = mainCamera.GetComponent<Transform>();
-        I = this;
     }
 
 
     private void Start()
     {
-        tiltAngle = 1f;
-        rotationSpeed = 1.0f;
-        zoomAmount = 20f;
-        zoomDestination = zoomAmount;
-        zoomSpeed = 1.0f;
-        isClockwise = true;
-        isAnimationEnd = true;
+        _tiltAngle = 1f;
+        _rotationSpeed = 1.0f;
+        _zoomAmount = 20f;
+        _zoomDestination = _zoomAmount;
+        _zoomSpeed = 1.0f;
+        _isClockwise = true;
+        _isAnimationEnd = true;
     }
 
     private void Update()
@@ -65,32 +61,32 @@ public class CameraManager : MonoBehaviour
 
     private void UpdateAngles()
     {
-        rotationAngle += rotationSpeed * ReturnDirection(isClockwise);
+        _rotationAngle += _rotationSpeed * ReturnDirection(_isClockwise);
     }
 
     private void UpdatePositions()
     {
-        cameraX = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Cos(rotationAngle * Mathf.Deg2Rad) * zoomAmount;
-        cameraY = Mathf.Sin(tiltAngle * Mathf.Deg2Rad) * Mathf.Sin(rotationAngle * Mathf.Deg2Rad) * zoomAmount;
-        cameraZ = Mathf.Cos(tiltAngle * Mathf.Deg2Rad) * zoomAmount * (-1);
-        mainCamera.orthographicSize = zoomAmount;
-        headDirecton = new Vector3(0f, 0f, cameraZ);
+        _cameraX = Mathf.Sin(_tiltAngle * Mathf.Deg2Rad) * Mathf.Cos(_rotationAngle * Mathf.Deg2Rad) * _zoomAmount;
+        _cameraY = Mathf.Sin(_tiltAngle * Mathf.Deg2Rad) * Mathf.Sin(_rotationAngle * Mathf.Deg2Rad) * _zoomAmount;
+        _cameraZ = Mathf.Cos(_tiltAngle * Mathf.Deg2Rad) * _zoomAmount * (-1);
+        mainCamera.orthographicSize = _zoomAmount;
+        _headDirecton = new Vector3(0f, 0f, _cameraZ);
     }
 
     private void UpdateCameraPosition()
     {
-        _transform.position = new Vector3(cameraX, cameraY, cameraZ);
+        _transform.position = new Vector3(_cameraX, _cameraY, _cameraZ);
     }
 
     private void UpdateCameraRotation()
     {
-        _transform.rotation = Quaternion.LookRotation(worldOrigin - _transform.position, headDirecton);
+        _transform.rotation = Quaternion.LookRotation(_worldOrigin - _transform.position, _headDirecton);
         _transform.rotation = new Quaternion(0, 0, _transform.rotation.z, _transform.rotation.w);
     }
 
     private void UpdateZoom()
     {
-        zoomAmount = Mathf.Lerp(zoomAmount, zoomDestination, Time.deltaTime * zoomSpeed);
+        _zoomAmount = Mathf.Lerp(_zoomAmount, _zoomDestination, Time.deltaTime * _zoomSpeed);
     }
 
     private int ReturnDirection(bool clockwise)
@@ -108,7 +104,7 @@ public class CameraManager : MonoBehaviour
     private void CheckAnimationProbability()
     {
         int random = Random.Range(0, 100);
-        if (random == 0 && isAnimationEnd)
+        if (random == 0 && _isAnimationEnd)
         {
             int phase = Random.Range(0, 4);
             switch (phase)
@@ -132,20 +128,20 @@ public class CameraManager : MonoBehaviour
 
     private void QuickTurn(bool direction = true, float time = 0.8f, float amount = 10.0f)
     {
-        isAnimationEnd = false;
-        Temp = rotationSpeed;
-        rotationSpeed = amount;
-        isClockwise = direction;
+        _isAnimationEnd = false;
+        Temp = _rotationSpeed;
+        _rotationSpeed = amount;
+        _isClockwise = direction;
 
-        Invoke("SetRotationSpeedTemp", time);
+        Invoke("SetrotationSpeedTemp", time);
     }
 
 
 
     private void ZoomInOutSustain(bool isOut = true, float time = 3.0f, float amount = 5.0f, float speed = 1.0f)
     {
-        isAnimationEnd = false;
-        Temp = zoomAmount;
+        _isAnimationEnd = false;
+        Temp = _zoomAmount;
 
         if (isOut)
         {
@@ -163,40 +159,40 @@ public class CameraManager : MonoBehaviour
 
     private void ZoomIn(float amount, float speed)
     {
-        zoomDestination = zoomAmount - amount;
-        zoomSpeed = speed;
+        _zoomDestination = _zoomAmount - amount;
+        _zoomSpeed = speed;
     }
 
     private void ZoomOut(float amount, float speed)
     {
-        zoomDestination = zoomAmount + amount;
-        zoomSpeed = speed;
+        _zoomDestination = _zoomAmount + amount;
+        _zoomSpeed = speed;
     }
 
     private void SetZoomDestinationTemp()
     {
-        zoomDestination = Temp;
-        zoomSpeed = 5.0f;
+        _zoomDestination = Temp;
+        _zoomSpeed = 5.0f;
         Invoke("SetZoomAmountTemp", 1.0f);
     }
     private void SetZoomAmountTemp()
     {
-        zoomAmount = Temp;
-        zoomDestination = zoomAmount;
-        zoomSpeed = 1.0f;
+        _zoomAmount = Temp;
+        _zoomDestination = _zoomAmount;
+        _zoomSpeed = 1.0f;
         Invoke("SetAnimationEnd", 1.0f);
     }
 
-    private void SetRotationSpeedTemp()
+    private void SetrotationSpeedTemp()
     {
-        rotationSpeed = Temp;
+        _rotationSpeed = Temp;
         Invoke("SetAnimationEnd", 1.0f);
     }
 
 
     private void SetAnimationEnd()
     {
-        isAnimationEnd = true;
+        _isAnimationEnd = true;
     }
 
 
