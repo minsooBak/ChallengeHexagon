@@ -39,7 +39,7 @@ public class CameraManager : MonoBehaviour
     {
         _tiltAngle = 1f;
         _rotationSpeed = 1.0f;
-        _zoomAmount = 10f;
+        _zoomAmount = 20f;
         _zoomDestination = _zoomAmount;
         _zoomSpeed = 1.0f;
         _isClockwise = true;
