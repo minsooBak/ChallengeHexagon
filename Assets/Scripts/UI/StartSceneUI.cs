@@ -7,6 +7,7 @@ public class StartSceneUI : TextDataUI
     [SerializeField] private GameObject _mainUI;
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private GameObject _audioUI;
+    [SerializeField] private GameObject _rankingUI;
 
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _startButton;
@@ -37,25 +38,32 @@ public class StartSceneUI : TextDataUI
         _healingPotion.text = HPPotion.ToString();
         _mainUI.SetActive(false);
         _shopUI.SetActive(true);
+        _rankingUI.SetActive(false);
         GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
+
 
     public void ShopExitButtonClick()
     {
         _mainUI.SetActive(true);
         _shopUI.SetActive(false);
+        _rankingUI.SetActive(true);
         GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void ShowAudioSetting()
     {
         _audioUI.SetActive(true);
+        _mainUI.SetActive(false);
+        _rankingUI.SetActive(false);
         GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
     public void HideAudioSetting()
     {
         _audioUI.SetActive(false);
+        _mainUI.SetActive(true);
+        _rankingUI.SetActive(true);
         GameManager.I.AudioManager.SFXPlay(SFX.UI_SELECT);
     }
 
