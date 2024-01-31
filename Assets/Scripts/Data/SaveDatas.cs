@@ -35,12 +35,6 @@ public class SaveDatas : MonoBehaviour
         string jsonData = File.ReadAllText(path);
 
         _saveRanking = JsonUtility.FromJson<SaveRankingData>(jsonData);
-
-        Debug.Log("Ranking Data");
-        foreach (var item in _saveRanking.ranking)
-        {
-            Debug.Log(item.name + " : " + item.bestScore);
-        }
     }
 
     [ContextMenu("To Json Data")]

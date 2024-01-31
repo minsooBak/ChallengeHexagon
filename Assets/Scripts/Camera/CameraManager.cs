@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     [Header("Camera Settings")]
     [SerializeField] [Range(1, 90)] private float _tiltAngle = 1f;
     [SerializeField] [Range(0f, 10f)] private float _rotationSpeed = 1.0f;
-    [SerializeField] [Range(20f, 35)] private float _zoomAmount = 20f;
+    [SerializeField] [Range(10f, 25f)] private float _zoomAmount = 20f;
     [SerializeField] private bool _isClockwise = true; // true = �ð����, false = �ݽð����
 
 
@@ -39,7 +39,7 @@ public class CameraManager : MonoBehaviour
     {
         _tiltAngle = 1f;
         _rotationSpeed = 1.0f;
-        _zoomAmount = 20f;
+        _zoomAmount = 10f;
         _zoomDestination = _zoomAmount;
         _zoomSpeed = 1.0f;
         _isClockwise = true;
@@ -143,12 +143,10 @@ public class CameraManager : MonoBehaviour
 
         if (isOut)
         {
-            Debug.Log("ZoomOut");
             ZoomOut(amount, speed);
         }
         else
         {
-            Debug.Log("ZoomIn");
             ZoomIn(amount, speed);
         }
 
