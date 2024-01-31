@@ -32,4 +32,8 @@
 6. 물이나 화장실은 채팅만 남기고 갔다오기
 
 7. 집중 안되거나 졸리면 10분정도 리프레쉬 하고 오기
-   
+
+### 기획 
+![image](https://github.com/minsooBak/ChallengeHexagon/assets/56661597/de2b1740-fd13-4b41-8029-2182e00c03eb)
+
+
