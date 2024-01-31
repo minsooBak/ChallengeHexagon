@@ -24,7 +24,8 @@ public class RankingManager : MonoBehaviour
 
     private void MakeRankingList()
     {
-        for(int i = 0; i < _saveData._saveRanking.ranking.Count; i++)
+        int count = _saveData._saveRanking.ranking.Count < 5 ? _saveData._saveRanking.ranking.Count : 5;
+        for(int i = 0; i < count; i++)
         {
             GameObject ranking = Instantiate(_rankingPrefab, _transform);
             newY = _transform.position.y - i;
