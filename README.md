@@ -4,10 +4,10 @@
 #### <span style="color:blue"> 🧑‍🤝‍🧑참여인원 밑 역할 </span>
 |팀원|직책|깃헙 링크|
 |------|---|---|
-|박민수|팀|[Minsoo](https://github.com/minsooBak)|
+|박민수|팀장|[Minsoo](https://github.com/minsooBak)|
 |강성원|팀원|[ChocoMucho](https://github.com/ChocoMucho)|
-|최보훈|팀장|[bohun](https://github.com/iou-bohun)|
-|추민규|팀원|[naddorf](https://github.com/cn7249)|
+|최보훈|팀원|[bohun](https://github.com/iou-bohun)|
+|추민규|팀원|[najdorf](https://github.com/cn7249)|
 * 박민수 - 오브젝트 메니저, 장애물이벤트, 스테이지
 * 추민규 - 메인씬UI, 랭킹씬UI 카메라매니저, 게임 매니저, BGM작곡
 * 강성원 - 오디오 매니저, 오브젝트 풀링
@@ -27,7 +27,7 @@
 
 4. 🕘 열공 중 인증하기 잊지 말기
 
-5. 점심시간 1시~2시, 저녁시간 6시~7시
+5. 점심시간 1시\~2시, 저녁시간 6시\~7시
 
 6. 물이나 화장실은 채팅만 남기고 갔다오기
 
@@ -51,9 +51,12 @@
 ### 🧰 구현 기능
 - 오브젝트 풀링을 이용한 충돌 벽 관리 
 - 오디오 채널 구현, 오디오 믹서로 오디오 효과 구현
-- 카매라 ----
-- 플레이어 InpuySystem을 이용한 조작
+- 카메라 3차원 좌표와 동작 구현
+- 플레이어 InputSystem을 이용한 조작
 - Json을 이용한 데이터 저장
+
+### 시연 영상
+[시연 영상]([https://youtu.be/5rtcWZLyd60])
 
 ### 트러블 슈팅 
 - [이미지를 하나씩 그리게 되어 Batches가 높아지고 SetPassCall도 많아짐](#S1)
