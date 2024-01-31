@@ -65,11 +65,11 @@
 - [BPM 계산이 조금씩 계속 어긋나는 현상](#S7)
 
 ---------------------------
-#### 트러블 슈팅 상세 내용
-##### S1
+### 트러블 슈팅 상세 내용
+## S1
 ![image](https://github.com/minsooBak/ChallengeHexagon/assets/56661597/91d2a589-f112-43df-a584-2dbd677fc7fe)
 
-##### S2
+#### S2
 > PlayerInput시스템을 이용해서 마우스 클릭 인풋을 받아 플레이어의 좌 우 이동을 조작하고자 하였다.
 > 
 > 
@@ -107,7 +107,7 @@ PlayerInput의 ActionType을 value로 하게되면 입력이 들어올때와, �
 ### 생겨난 아이디어
 
 이게 오류라고 생각하면 고치는게 맞지만, 달리 생각해 보았다. 플레이어가 멈추지 않고, 계속 움직이는 스타일의 게임을 만들고 싶다면, 초기화를 해줄 필요 없이 수정 전의 코드를 이용하면 좋겠다고 생각하였다.
-##### S3
+## S3
 ### 문제
 
 새 Camera 추가 시 다음과 같은 메시지가 지속적으로 콘솔 창에 출력.
@@ -123,7 +123,7 @@ PlayerInput의 ActionType을 value로 하게되면 입력이 들어올때와, �
 ### 해결
 
 UI Camera의 AudioListener 컴포넌트를 제거했다.
-##### S4
+## S4
 여러 효과음들이 서로를 간섭하지 않고 동시에 재생되기 위해서는 여러개의 채널(Audio Souce)을 사용하면 된다.
 
 하지만 구현한 코드로는 현재 가리키는 채널의 인덱스가 1에서 멈추기 때문에 효과음이 재생 중일 때 다른 효과음을 재생하면 기존 효과음은 정지해버린다.
@@ -154,7 +154,7 @@ public void SFXPlay(SFX sfx)
 ```
 
 의 `i`를 계속 도는 인덱스인`loop`로 바꾸니 해결됐지만 이유는 파악해야함.
-##### S5
+### S5
 해결과정
 
 데이터 전달 방식에서 고민 하다가 일단 ObjectManager → Object → Wall로 옮기는 식으로 진행
@@ -171,7 +171,7 @@ public void SFXPlay(SFX sfx)
 2. index값을 ObjectManager → object → wall에 전달하고 eventMain에서 index값을 통해 WallEventManager.GetData로 처리
 
 결과 : 여전히 Wall에 데이터를 넘기는데 번거롭지만 데이터 전체를 옮기는 것에서 index값만 넘겨주는것으로 종료
-##### S6
+### S6
 오브젝트 풀로 Wall 프리팹을 인스턴스화한 후에 Object에 종속시키면 아래와 같이 된다.
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/83c75a39-3aba-4ba4-a792-7aefe4b07895/9bc6bd30-c8b3-47f9-9039-17f0b9759a9c/Untitled.png)
@@ -218,7 +218,7 @@ public class ObjectPool : MonoBehaviour
     }
 }
 ```
-##### S7
+### S7
 ### 문제 상황
 
 BPM(Beats Per Minute, 분당 비트 수)에 맞춰 플레이어 hp UI가 작아졌다 커지도록 하려고 했지만
