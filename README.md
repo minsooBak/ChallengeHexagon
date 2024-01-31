@@ -4,7 +4,7 @@
 #### <span style="color:blue"> 🧑‍🤝‍🧑참여인원 밑 역할 </span>
 |팀원|직책|깃헙 링크|
 |------|---|---|
-|박민수|팀|[Minsoo](https://github.com/BakGuno/Bak-s-study](https://github.com/minsooBak)|
+|박민수|팀|[Minsoo](https://github.com/BakGuno/Bak-s-study](https://github.com/minsooBak )|
 |강성원|팀원|[ChocoMucho](https://github.com/siryu2409](https://github.com/ChocoMucho )|
 |최보훈|팀장|[bohun](https://github.com/sda0503](https://github.com/iou-bohun )|
 |추민규|팀원|[naddorf](https://github.com/leejh0469](https://github.com/cn7249 )|
