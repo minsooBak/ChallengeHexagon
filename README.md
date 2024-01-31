@@ -8,10 +8,10 @@
 |강성원|팀원|[ChocoMucho](https://github.com/ChocoMucho)|
 |최보훈|팀장|[bohun](https://github.com/iou-bohun)|
 |추민규|팀원|[naddorf](https://github.com/cn7249)|
-* 박민수 - 오브젝트 메니저
-* 추민규 - UI, UX, 카메라 회전, 게임 매니저
+* 박민수 - 오브젝트 메니저, 장애물이벤트, 스테이지
+* 추민규 - 메인씬UI, 랭킹씬UI 카메라매니저, 게임 매니저, BGM작곡
 * 강성원 - 오디오 매니저, 오브젝트 풀링
-* 최보훈 - 데이터 저장 및 불러오기, Player 
+* 최보훈 - 데이터 저장 및 불러오기, Player, 시작씬UI
 
 ### <span style="color:orange"> 📝컨밴션 규칙
 </span>![image](https://github.com/minsooBak/ChallengeHexagon/assets/56661597/118c4122-0818-4dc9-a017-650c6ec63d45)
