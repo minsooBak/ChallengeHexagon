@@ -51,7 +51,6 @@ public class SaveDatas : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "SaveData.json");
         if (!File.Exists(path))
         {
-            Debug.Log("No File");
             _saveData = new SaveData();
             return;
         }
