@@ -69,7 +69,7 @@
 ## S1
 ![image](https://github.com/minsooBak/ChallengeHexagon/assets/56661597/91d2a589-f112-43df-a584-2dbd677fc7fe)
 
-#### S2
+## S2
 > PlayerInput시스템을 이용해서 마우스 클릭 인풋을 받아 플레이어의 좌 우 이동을 조작하고자 하였다.
 > 
 > 
