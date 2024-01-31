@@ -13,10 +13,10 @@
 * 강성원 - 오디오 매니저, 오브젝트 풀링
 * 최보훈 - 데이터 저장 및 불러오기, Player 
 
-#### <span style="color:orange"> 📝컨밴션 규칙
+### <span style="color:orange"> 📝컨밴션 규칙
 </span>![image](https://github.com/minsooBak/ChallengeHexagon/assets/56661597/118c4122-0818-4dc9-a017-650c6ec63d45)
 
-#### 🤝 팀 규칙 
+### 🤝 팀 규칙 
 1. 스크럼 오전 10시 / 오후 7시 30분
 	 오전 : 작업할 내용 짧게 나누고 점검
 	 오후 : 작업한 내용 나누고 보완할 점 의논
