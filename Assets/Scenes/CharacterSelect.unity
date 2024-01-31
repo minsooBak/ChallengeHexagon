@@ -2517,6 +2517,7 @@ MonoBehaviour:
   _mainUI: {fileID: 710485781}
   _shopUI: {fileID: 947090100}
   _audioUI: {fileID: 913579336}
+  _rankingUI: {fileID: 1541603592}
   _shopButton: {fileID: 1270429516}
   _startButton: {fileID: 1895833059}
   _exitShop: {fileID: 1131792914}
